@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide Bubblewrap - PWA Builder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .section h3 {
+            color: #764ba2;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .step {
+            background: #f8f9fa;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 5px solid #667eea;
+            border-radius: 4px;
+        }
+        
+        .step-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .step h4 {
+            display: inline-block;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .tip {
+            background: #d1ecf1;
+            border-left: 5px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .warning {
+            background: #f8d7da;
+            border-left: 5px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Guide Bubblewrap</h1>
+            <p>Convertir votre PWA en application Android native</p>
+        </div>
+        
+        <div class="content">
+            <!-- Section 1: Prérequis -->
+            <div class="section">
+                <h2>📋 Prérequis</h2>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h4>Node.js et npm</h4>
+                    <p>Installez Node.js (version 14 ou supérieure)</p>
+                    <div class="code-block">node --version<br>npm --version</div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h4>Java Development Kit (JDK)</h4>
+                    <p>Installez JDK 11 ou supérieur</p>
+                    <div class="code-block">java -version</div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <h4>Android SDK</h4>
+                    <p>Installez Android SDK et définez la variable d'environnement ANDROID_HOME</p>
+                </div>
+                
+                <div class="note">
+                    <strong>💡 Conseil:</strong> Utilisez Android Studio pour installer facilement Android SDK et les outils nécessaires.
+                </div>
+            </div>
+            
+            <!-- Section 2: Installation -->
+            <div class="section">
+                <h2>⚙️ Installation de Bubblewrap</h2>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h4>Installation globale</h4>
+                    <div class="code-block">npm install -g @bubblewrap/cli</div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h4>Vérifier l'installation</h4>
+                    <div class="code-block">bubblewrap --version</div>
+                </div>
+                
+                <div class="tip">
+                    <strong>✅ Astuce:</strong> Si vous avez des problèmes de droits, utilisez <code>sudo</code> sur Linux/Mac ou lancez PowerShell en tant qu'administrateur sur Windows.
+                </div>
+            </div>
+            
+            <!-- Section 3: Créer votre projet -->
+            <div class="section">
+                <h2>🏗️ Créer votre projet Android</h2>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h4>Initialiser le projet</h4>
+                    <div class="code-block">bubblewrap init --manifest=https://votresite.com/manifest.json</div>
+                </div>
+                
+                <div class="note">
+                    <strong>⚠️ Important:</strong> Remplacez <code>https://votresite.com</code> par l'URL réelle de votre PWA.
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h4>Répondre aux questions</h4>
+                    <p>Bubblewrap vous posera des questions:</p>
+                    <ul>
+                        <li><strong>App name:</strong> Nom de votre application</li>
+                        <li><strong>Package ID:</strong> Par exemple: com.exemple.monapp</li>
+                        <li><strong>Version code/name:</strong> Versions de l'app (1.0.0, etc.)</li>
+                        <li><strong>Icons:</strong> Chemins vers vos icônes (192x192, 512x512)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Section 4: Configurer votre PWA -->
+            <div class="section">
+                <h2>📱 Configuration requise pour votre PWA</h2>
+                
+                <p>Votre PWA doit inclure un fichier <code>manifest.json</code>:</p>
+                
+                <div class="code-block">{<br>
+  "name": "Mon Application",<br>
+  "short_name": "MonApp",<br>
+  "start_url": "/",<br>
+  "display": "standalone",<br>
+  "background_color": "#ffffff",<br>
+  "theme_color": "#667eea",<br>
+  "icons": [<br>
+    {<br>
+      "src": "/images/icon-192.png",<br>
+      "sizes": "192x192",<br>
+      "type": "image/png",<br>
+      "purpose": "any"<br>
+    },<br>
+    {<br>
+      "src": "/images/icon-512.png",<br>
+      "sizes": "512x512",<br>
+      "type": "image/png",<br>
+      "purpose": "any"<br>
+    }<br>
+  ]<br>
+}</div>
+                
+                <div class="tip">
+                    <strong>✅ Conseil:</strong> Testez votre PWA avec Lighthouse avant de créer l'APK.
+                </div>
+            </div>
+            
+            <!-- Section 5: Construire l'APK -->
+            <div class="section">
+                <h2>🔨 Construire l'APK</h2>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h4>Générer l'APK de debug</h4>
+                    <div class="code-block">bubblewrap build</div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h4>Générer l'APK signé (production)</h4>
+                    <div class="code-block">bubblewrap build --release</div>
+                </div>
+                
+                <div class="tip">
+                    <strong>✅ Résultat:</strong> Le fichier APK se trouvera dans le dossier <code>dist/</code>
+                </div>
+                
+                <div class="warning">
+                    <strong>⚠️ Important pour le Play Store:</strong> Vous devez créer une clé de signature pour soumettre à Google Play Store.
+                </div>
+            </div>
+            
+            <!-- Section 6: Tester l'app -->
+            <div class="section">
+                <h2>🧪 Tester votre application</h2>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h4>Sur un appareil physique</h4>
+                    <ul>
+                        <li>Activez le débogage USB sur votre téléphone</li>
+                        <li>Connectez votre téléphone à votre ordinateur</li>
+                        <li>Utilisez: <code>adb install dist/app.apk</code></li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h4>Sur un émulateur</h4>
+                    <ul>
+                        <li>Lancez l'émulateur Android</li>
+                        <li>Exécutez: <code>adb install dist/app.apk</code></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Section 7: Commandes utiles -->
+            <div class="section">
+                <h2>📚 Commandes Bubblewrap utiles</h2>
+                
+                <div class="code-block">
+# Initialiser un nouveau projet<br>
+bubblewrap init<br>
+<br>
+# Mettre à jour le projet existant<br>
+bubblewrap update<br>
+<br>
+# Construire le projet<br>
+bubblewrap build<br>
+<br>
+# Construire en release<br>
+bubblewrap build --release<br>
+<br>
+# Afficher l'aide<br>
+bubblewrap help
+                </div>
+            </div>
+            
+            <!-- Section 8: Ressources -->
+            <div class="section">
+                <h2>🔗 Ressources utiles</h2>
+                
+                <ul>
+                    <li><strong>Documentation officielle:</strong> <a href="https://github.com/GoogleChromeLabs/bubblewrap" target="_blank">GitHub - Bubblewrap</a></li>
+                    <li><strong>PWA Builder:</strong> <a href="https://www.pwabuilder.com" target="_blank">PWABuilder.com</a></li>
+                    <li><strong>Android Developers:</strong> <a href="https://developer.android.com/" target="_blank">developer.android.com</a></li>
+                    <li><strong>Manifest.json:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/Manifest" target="_blank">MDN - Web App Manifest</a></li>
+                </ul>
+            </div>
+            
+            <!-- Section 9: Dépannage -->
+            <div class="section">
+                <h2>🔧 Dépannage courant</h2>
+                
+                <h3>Erreur: "ANDROID_HOME not set"</h3>
+                <p>Définissez la variable d'environnement ANDROID_HOME vers votre installation Android SDK</p>
+                
+                <h3>Erreur lors du build</h3>
+                <p>Essayez de nettoyer et reconstruire:</p>
+                <div class="code-block">bubblewrap build --clean</div>
+                
+                <h3>La PWA n'affiche pas bien le contenu</h3>
+                <p>Vérifiez que:</p>
+                <ul>
+                    <li>Votre HTTPS est correctement configuré</li>
+                    <li>Le manifest.json est valide</li>
+                    <li>Les icônes ont les bonnes dimensions</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Guide Bubblewrap - PWA Builder | Mise à jour: Février 2026</p>
+        </div>
+    </div>
+</body>
+</html>

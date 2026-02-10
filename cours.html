@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours - Les Bases de CSS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        main {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            color: #764ba2;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            background: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid #667eea;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .code-example {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            border-left: 4px solid #667eea;
+        }
+
+        .code-label {
+            color: #667eea;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .demo-box {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 15px;
+            border: 2px solid #667eea;
+        }
+
+        /* Exemples pratiques */
+        .example-colors {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .color-box {
+            flex: 1;
+            min-width: 100px;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .red { background-color: #ff6b6b; }
+        .blue { background-color: #667eea; }
+        .green { background-color: #51cf66; }
+        .orange { background-color: #ffa94d; }
+
+        .example-text {
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .text-small { font-size: 0.8em; }
+        .text-normal { font-size: 1em; }
+        .text-large { font-size: 1.5em; }
+
+        .bold { font-weight: bold; }
+        .italic { font-style: italic; }
+        .underline { text-decoration: underline; }
+
+        .example-box-model {
+            background: white;
+            border: 2px solid #667eea;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+        }
+
+        .selectors-list {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .selector-item {
+            padding: 10px;
+            margin-bottom: 10px;
+            background: white;
+            border-left: 4px solid #667eea;
+            border-radius: 3px;
+        }
+
+        .selector-item code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+
+        .flex-example {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .flex-item {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            flex: 1;
+            min-width: 80px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .grid-example {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .grid-item {
+            background: #764ba2;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .button-demo {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 10px 10px 10px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: #51cf66;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #37a854;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(81, 207, 102, 0.4);
+        }
+
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+
+        @media (max-width: 600px) {
+            .grid-example {
+                grid-template-columns: 1fr;
+            }
+
+            .flex-example {
+                flex-direction: column;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .section h2 {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Les Bases de CSS</h1>
+            <p>Apprenez les fondamentaux du CSS avec des exemples pratiques</p>
+        </header>
+
+        <main>
+            <!-- SECTION 1: Introduction -->
+            <section class="section">
+                <h2>1. Qu'est-ce que le CSS?</h2>
+                <div class="description">
+                    <p>CSS (Cascading Style Sheets) est un langage utilisé pour styliser et mettre en page les éléments HTML. Il permet de contrôler les couleurs, les polices, les espacements, les layouts et bien d'autres propriétés visuelles.</p>
+                </div>
+                <p>Le CSS travaille avec le HTML pour créer des sites web modernes et attrayants. Tandis que le HTML structure le contenu, le CSS le rend beau.</p>
+            </section>
+
+            <!-- SECTION 2: Syntaxe de base -->
+            <section class="section">
+                <h2>2. Syntaxe de Base</h2>
+                <p>Une règle CSS se compose d'un sélecteur et d'une déclaration:</p>
+                <div class="code-example">
+sélecteur {
+    propriété: valeur;
+    propriété2: valeur2;
+}
+                </div>
+                <div class="code-example">
+h1 {
+    color: blue;
+    font-size: 24px;
+}
+                </div>
+            </section>
+
+            <!-- SECTION 3: Sélecteurs -->
+            <section class="section">
+                <h2>3. Les Sélecteurs</h2>
+                <p>Les sélecteurs sont utilisés pour cibler les éléments HTML à styliser.</p>
+
+                <h3>Types de sélecteurs:</h3>
+                <div class="selectors-list">
+                    <div class="selector-item">
+                        <strong>Sélecteur d'élément:</strong> <code>p { }</code> - Cible tous les éléments &lt;p&gt;
+                    </div>
+                    <div class="selector-item">
+                        <strong>Sélecteur de classe:</strong> <code>.classname { }</code> - Cible tous les éléments avec la classe "classname"
+                    </div>
+                    <div class="selector-item">
+                        <strong>Sélecteur d'ID:</strong> <code>#idname { }</code> - Cible l'élément avec l'ID "idname"
+                    </div>
+                    <div class="selector-item">
+                        <strong>Sélecteur universel:</strong> <code>* { }</code> - Cible tous les éléments
+                    </div>
+                    <div class="selector-item">
+                        <strong>Sélecteur de descendant:</strong> <code>parent enfant { }</code> - Cible un enfant à l'intérieur d'un parent
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 4: Couleurs -->
+            <section class="section">
+                <h2>4. Les Couleurs</h2>
+                <p>Il y a plusieurs façons de définir les couleurs en CSS:</p>
+
+                <h3>Exemples de couleurs:</h3>
+                <div class="code-example">
+/* Couleurs nommées */
+color: red;
+
+/* Valeurs hexadécimales */
+color: #ff0000;
+
+/* RGB */
+color: rgb(255, 0, 0);
+
+/* HSL */
+color: hsl(0, 100%, 50%);
+                </div>
+
+                <h3>Démo - Boîtes de couleurs:</h3>
+                <div class="example-colors">
+                    <div class="color-box red">Rouge #ff6b6b</div>
+                    <div class="color-box blue">Bleu #667eea</div>
+                    <div class="color-box green">Vert #51cf66</div>
+                    <div class="color-box orange">Orange #ffa94d</div>
+                </div>
+            </section>
+
+            <!-- SECTION 5: Texte et Polices -->
+            <section class="section">
+                <h2>5. Texte et Polices</h2>
+
+                <h3>Propriétés de texte principales:</h3>
+                <div class="code-example">
+color: blue;              /* Couleur du texte */
+font-size: 16px;          /* Taille du texte */
+font-family: Arial, sans-serif;  /* Famille de police */
+font-weight: bold;        /* Épaisseur (normal, bold, 700, etc.) */
+text-align: center;       /* Alignement (left, center, right, justify) */
+text-decoration: underline;  /* Décoration (underline, overline, line-through) */
+line-height: 1.6;         /* Hauteur de ligne */
+text-transform: uppercase; /* Transformation (uppercase, lowercase, capitalize) */
+                </div>
+
+                <h3>Démo - Styles de texte:</h3>
+                <div class="example-text">
+                    <div class="text-small">Texte petit (0.8em)</div>
+                    <div class="text-normal">Texte normal (1em)</div>
+                    <div class="text-large">Texte large (1.5em)</div>
+                </div>
+                <div class="example-text" style="margin-top: 15px;">
+                    <div class="bold">Texte en gras</div>
+                    <div class="italic">Texte en italique</div>
+                    <div class="underline">Texte souligné</div>
+                </div>
+            </section>
+
+            <!-- SECTION 6: Box Model -->
+            <section class="section">
+                <h2>6. Le Modèle de Boîte (Box Model)</h2>
+                <div class="description">
+                    <p>Chaque élément HTML est une boîte rectangulaire composée de 4 couches: contenu, padding, border et margin.</p>
+                </div>
+
+                <div class="code-example">
+margin: 20px;        /* Espace externe */
+border: 2px solid;   /* Bordure */
+padding: 15px;       /* Espace interne */
+width: 200px;        /* Largeur */
+height: 100px;       /* Hauteur */
+                </div>
+
+                <h3>Démo - Modèle de boîte:</h3>
+                <div class="example-box-model">
+                    Contenu: 200x100px | Padding: 20px | Border: 2px | Margin: 20px
+                </div>
+            </section>
+
+            <!-- SECTION 7: Arrière-plan -->
+            <section class="section">
+                <h2>7. Arrière-plans (Background)</h2>
+
+                <div class="code-example">
+/* Couleur d'arrière-plan */
+background-color: blue;
+
+/* Image d'arrière-plan */
+background-image: url('image.jpg');
+
+/* Dégradé linéaire */
+background: linear-gradient(to right, red, blue);
+
+/* Dégradé radial */
+background: radial-gradient(circle, red, blue);
+
+/* Répétition de l'image */
+background-repeat: no-repeat;
+background-size: cover;
+                </div>
+
+                <h3>Démo - Arrière-plan avec dégradé:</h3>
+                <div class="demo-box" style="background: linear-gradient(to bottom, #667eea, #764ba2); color: white; text-align: center; padding: 40px;">
+                    <strong>Dégradé linéaire du haut vers le bas</strong>
+                </div>
+            </section>
+
+            <!-- SECTION 8: Affichage et Positioning -->
+            <section class="section">
+                <h2>8. Affichage (Display) et Positionnement</h2>
+
+                <h3>Propriétés de display:</h3>
+                <div class="code-example">
+display: block;       /* Occupe toute la largeur disponible */
+display: inline;      /* N'occupe que l'espace nécessaire */
+display: inline-block; /* Combinaison de block et inline */
+display: none;        /* Élément caché */
+display: flex;        /* Flexbox (layout flexible) */
+display: grid;        /* CSS Grid (layout en grille) */
+                </div>
+
+                <h3>Positionnement:</h3>
+                <div class="code-example">
+position: static;     /* Par défaut */
+position: relative;   /* Relatif à sa position normale */
+position: absolute;   /* Relatif au parent positionné */
+position: fixed;      /* Fixe par rapport à la fenêtre */
+position: sticky;     /* Fixe lors du scroll */
+                </div>
+            </section>
+
+            <!-- SECTION 9: Flexbox -->
+            <section class="section">
+                <h2>9. Flexbox - Layout Flexible</h2>
+                <p>Flexbox est un système de mise en page qui facilite l'alignement et la distribution des éléments.</p>
+
+                <div class="code-example">
+.container {
+    display: flex;
+    justify-content: space-between;  /* Distribution horizontale */
+    align-items: center;              /* Alignement vertical */
+    gap: 10px;                        /* Espace entre les éléments */
+    flex-wrap: wrap;                  /* Retour à la ligne */
+}
+                </div>
+
+                <h3>Démo - Flexbox:</h3>
+                <div class="flex-example">
+                    <div class="flex-item">Item 1</div>
+                    <div class="flex-item">Item 2</div>
+                    <div class="flex-item">Item 3</div>
+                    <div class="flex-item">Item 4</div>
+                </div>
+            </section>
+
+            <!-- SECTION 10: CSS Grid -->
+            <section class="section">
+                <h2>10. CSS Grid - Layout en Grille</h2>
+                <p>CSS Grid permet de créer des layouts complexes en deux dimensions.</p>
+
+                <div class="code-example">
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* 3 colonnes égales */
+    grid-template-rows: auto;
+    gap: 10px;
+}
+                </div>
+
+                <h3>Démo - CSS Grid:</h3>
+                <div class="grid-example">
+                    <div class="grid-item">Colonne 1</div>
+                    <div class="grid-item">Colonne 2</div>
+                    <div class="grid-item">Colonne 3</div>
+                    <div class="grid-item">Ligne 2-1</div>
+                    <div class="grid-item">Ligne 2-2</div>
+                    <div class="grid-item">Ligne 2-3</div>
+                </div>
+            </section>
+
+            <!-- SECTION 11: Transitions et Animations -->
+            <section class="section">
+                <h2>11. Transitions et Animations</h2>
+
+                <h3>Transitions (changements lisses):</h3>
+                <div class="code-example">
+.button {
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkblue;
+    transform: scale(1.1);
+}
+                </div>
+
+                <h3>Démo - Boutons interactifs:</h3>
+                <div style="margin-top: 15px;">
+                    <button class="button-demo btn-primary">Bouton Primaire</button>
+                    <button class="button-demo btn-secondary">Bouton Secondaire</button>
+                </div>
+
+                <h3>Animations CSS:</h3>
+                <div class="code-example">
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+    }
+    to {
+        margin-left: 0%;
+    }
+}
+
+.element {
+    animation: slidein 2s ease-in-out;
+}
+                </div>
+            </section>
+
+            <!-- SECTION 12: Responsive Design -->
+            <section class="section">
+                <h2>12. Responsive Design - Media Queries</h2>
+                <p>Les media queries permettent d'adapter le style aux différentes tailles d'écran.</p>
+
+                <div class="code-example">
+/* Sur les écrans de moins de 600px */
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+    
+    .grid-example {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Sur les écrans de 601px à 1024px */
+@media (min-width: 601px) and (max-width: 1024px) {
+    body {
+        font-size: 16px;
+    }
+}
+                </div>
+            </section>
+
+            <!-- SECTION 13: Bonnes pratiques -->
+            <section class="section">
+                <h2>13. Bonnes Pratiques</h2>
+                <div class="selectors-list">
+                    <div class="selector-item">
+                        <strong>1. Utilisez des classes plutôt que des IDs:</strong> Les classes sont plus réutilisables et spécifiques au CSS.
+                    </div>
+                    <div class="selector-item">
+                        <strong>2. Organisez votre CSS:</strong> Groupez les règles par composants ou sections.
+                    </div>
+                    <div class="selector-item">
+                        <strong>3. Évitez les styles inline:</strong> Préférez les fichiers CSS externes.
+                    </div>
+                    <div class="selector-item">
+                        <strong>4. Mobile-first:</strong> Commencez par les styles mobiles, puis utilisez les media queries pour les plus grands écrans.
+                    </div>
+                    <div class="selector-item">
+                        <strong>5. Maintenez la cohérence:</strong> Utilisez une palette de couleurs et une typographie cohérentes.
+                    </div>
+                    <div class="selector-item">
+                        <strong>6. Performance:</strong> Minimisez le CSS inutilisé et optimisez les images.
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 14: Ressources -->
+            <section class="section">
+                <h2>14. Ressources Utiles</h2>
+                <div class="selectors-list">
+                    <div class="selector-item">
+                        <strong>MDN Web Docs:</strong> Documentation complète sur le CSS (en anglais et français)
+                    </div>
+                    <div class="selector-item">
+                        <strong>CSS-Tricks:</strong> Articles et guides pratiques sur le CSS moderne
+                    </div>
+                    <div class="selector-item">
+                        <strong>Can I Use:</strong> Vérifier la compatibilité des propriétés CSS avec les navigateurs
+                    </div>
+                    <div class="selector-item">
+                        <strong>Gradient Generator:</strong> Outils en ligne pour générer des dégradés CSS
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 - Cours CSS | Créé pour apprendre les bases du CSS | <a href="index.html" style="color: #667eea; text-decoration: none;">← Retour à l'accueil</a></p>
+        </footer>
+    </div>
+</body>
+</html>

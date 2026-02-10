@@ -1,0 +1,149 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/output.css">
+    <title>Grille tailwind</title>
+    <style>
+        .sub-menu {
+            display: none;
+        }
+
+        .sub:hover .sub-menu {
+            display: block;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <!-- Grid avec tailwind -->
+    <div class="grid grid-cols-3 gap-4">
+        <div class="bg-red-500 p-4">Col 1</div>
+        <div class="bg-red-500 p-4">Col 2</div>
+        <div class="bg-red-500 p-4">Col 3</div>
+    </div><br>
+    <div class="grid grid-cols-3 gap-4">
+        <div class="bg-green-500 p-4">Col 1</div>
+        <div class="bg-green-500 p-4">Col 2</div>
+        <div class="bg-green-500 p-4">Col 3</div>
+        <div class="bg-green-500 p-4">Col 4</div>
+        <div class="bg-green-500 p-4">Col 5</div>
+        <div class="bg-green-500 p-4">Col 6</div>
+    </div><br>
+    <!-- grid responsive -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="bg-blue-500 p-4">Col 1</div>
+        <div class="bg-blue-500 p-4">Col 2</div>
+        <div class="bg-blue-500 p-4">Col 3</div>
+        <div class="bg-blue-500 p-4">Col 4</div>
+        <div class="bg-blue-500 p-4">Col 5</div>
+        <div class="bg-blue-500 p-4">Col 6</div>
+    </div><br>
+
+    <!-- Sous-menu avec tailwind -->
+    <nav class="bg-gray-800 text-white">
+        <div class="flex justify-between items-center h-15">
+            <div class="w-20">
+                <img src="https://media2.dev.to/dynamic/image/width=1280,height=720,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fi5vke8fu8g8659hjvv22.jpeg"
+                    alt="logo">
+            </div>
+            <ul class="flex gap-8 mr-5">
+                <li class="sub"><a href="#" class="active:bg-black p-3 shadow-sm shadow-black">HTML ⬇️</a>
+                    <!-- Ajout du sous-menu ici -->
+                    <ul class="absolute bg-gray-800 text-white mt-2 sub-menu">
+                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">Sous-menu 1</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">Sous-menu 2</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">Sous-menu 3</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="active:bg-black p-3 shadow-sm shadow-black">Javascript</a></li>
+                <li><a href="#" class="active:bg-orange-500 p-3 shadow-sm shadow-black">CSS</a></li>
+                <li class="sub"><a href="#" class="active:bg-blue-500 p-3 shadow-sm shadow-black">C++ ⬇️</a>
+                    <ul class="absolute bg-gray-800 text-white mt-2 sub-menu">
+                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">C++ 1</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">C++ 2</a></li>
+                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">C++ 3</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="hover:bg-gray-500 p-3 shadow-sm shadow-black">C++</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Grille avec images -->
+    <div class="grid grid-cols-3 gap-4 mt-4">
+        <div class="bg-gray-300 p-4">
+            <img src="https://media2.dev.to/dynamic/image/width=1280,height=720,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fi5vke8fu8g8659hjvv22.jpeg"
+                alt="Image 1" class="w-full h-auto">
+        </div>
+        <div class="bg-gray-300 p-4">
+            <img src="https://media2.dev.to/dynamic/image/width=1280,height=720,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fi5vke8fu8g8659hjvv22.jpeg"
+                alt="Image 2" class="w-full h-auto">
+        </div>
+        <div class="bg-gray-300 p-4">
+            <img src="https://media2.dev.to/dynamic/image/width=1280,height=720,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fi5vke8fu8g8659hjvv22.jpeg"
+                alt="Image 3" class="w-full h-auto">
+        </div>
+    </div><br><br>
+    <!-- Des boutons avec tailwind -->
+    <div class="grid grid-cols-3 gap-4 text-center border-2">
+        <div class="btn bg-blue-600 p-4"><button class="btn text-cyan-50 cursor-pointer bg-red-500 p-4">Bouton
+                1</button></div>
+        <div class="p-4"><button class="btn bg-amber-200 p-4 cursor-pointer">Bouton 2</button></div>
+        <div class="btn bg-green-500 p-4 cursor-pointer"><button class="btn bg-cyan-300 p-4">Bouton 3</button></div>
+    </div><br><br>
+    <!-- Formulaire avec Tailwind -->
+    <form class="max-w-md mx-auto bg-gray-100 p-6 rounded-lg shadow-md border-2">
+        <div class="mb-4">
+            <label for="name" class="block text-gray-700 font-bold mb-2">Nom:</label>
+            <input type="text" id="name" name="name"
+                class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500">
+        </div>
+        <div class="mb-4">
+            <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter votre email" required
+                class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500">
+        </div>
+        <div class="mb-4">
+            <label for="message" class="block text-gray-700 font-bold mb-2">Message:</label>
+            <textarea id="message" name="message"
+                class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500"></textarea>
+        </div>
+        <div class="btn1 text-center p-5">
+            <button type="submit"
+                class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring">Envoyer</button>
+        </div>
+    </form>
+    <!-- Les paragraphes avec tailwind -->
+    <div class="grid grid-cols-1 gap-4 mt-4">
+        <p class="bg-gray-200 p-4 rounded-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+            tempor incididunt ut
+            labore et dolore magna aliqua.</p>
+        <p class="bg-green-200 p-4 rounded">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea
+            commodo consequat.</p>
+        <p class="bg-gray-200 p-4 rounded-full">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+            dolore eu fugiat
+            nulla pariatur.</p>
+    </div><br>
+    <!-- Le menu latéral avec Tailwind -->
+    <div class="flex border-t-8">
+        <nav class="w-50 bg-gray-800 text-white p-4">
+            <ul>
+                <li><a href="#" class="block py-2 px-4 hover:bg-gray-700">🏠Accueil</a></li>
+                <li><a href="#" class="block py-2 px-4 hover:bg-gray-700">❓À propos</a></li>
+                <li><a href="#" class="block py-2 px-4 hover:bg-gray-700">⚙️Services</a></li>
+                <li><a href="#" class="block py-2 px-4 hover:bg-gray-700">📞Contact</a></li>
+            </ul>
+        </nav>
+        <div class="w-3/4 p-4">
+            <h1 class="text-2xl font-bold mb-4">Bienvenue sur notre site!</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua.</p>
+        </div>
+    </div><br>
+</body>
+
+</html>

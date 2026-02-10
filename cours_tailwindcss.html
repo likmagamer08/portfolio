@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Bases de Tailwind CSS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+        }
+        
+        h2 {
+            color: #764ba2;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-left: 4px solid #764ba2;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        p, li {
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        
+        ul {
+            margin-left: 30px;
+        }
+        
+        .example-box {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #856404;
+        }
+        
+        .demo-section {
+            background: #f0f4ff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border: 2px dashed #667eea;
+        }
+        
+        .demo-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+        }
+        
+        .tailwind-utility {
+            background: #e3f2fd;
+            padding: 8px 12px;
+            border-radius: 3px;
+            display: inline-block;
+            font-family: monospace;
+            color: #1976d2;
+            margin: 5px 5px 5px 0;
+        }
+        
+        .note {
+            background: #fff9c4;
+            border-left: 4px solid #fbc02d;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .warning {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        table th {
+            background: #667eea;
+            color: white;
+        }
+        
+        table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- TITRE PRINCIPAL -->
+        <h1>🎨 Les Bases de Tailwind CSS</h1>
+        
+        <!-- INTRODUCTION -->
+        <div class="note">
+            <strong>Qu'est-ce que Tailwind CSS ?</strong><br>
+            Tailwind CSS est un framework CSS utilitaire qui fonctionne différemment des frameworks traditionnels. 
+            Au lieu de fournir des composants prédéfinis, Tailwind vous donne des petites classes utilitaires 
+            que vous combinez pour créer vos propres designs. C'est comme des "briques de LEGO" pour le CSS !
+        </div>
+        
+        <!-- SECTION 1: COMPRENDRE LE CONCEPT -->
+        <h2>1️⃣ Comprendre le Concept Utilitaire</h2>
+        
+        <h3>Approche Traditionnelle vs Tailwind</h3>
+        <p>
+            <span class="highlight">Bootstrap (traditionnel)</span> : Vous avez des classes comme 
+            <span class="tailwind-utility">.btn</span> et <span class="tailwind-utility">.btn-primary</span> 
+            que vous utilisez directement.
+        </p>
+        
+        <div class="example-box">
+            <strong>Bootstrap :</strong>
+            <div class="code-block">&lt;button class="btn btn-primary"&gt;Click me&lt;/button&gt;</div>
+        </div>
+        
+        <p>
+            <span class="highlight">Tailwind (utilitaire)</span> : Vous utilisez de petites classes utilitaires 
+            pour construire votre design de zéro.
+        </p>
+        
+        <div class="example-box">
+            <strong>Tailwind :</strong>
+            <div class="code-block">&lt;button class="px-4 py-2 bg-blue-500 text-white rounded"&gt;Click me&lt;/button&gt;</div>
+        </div>
+        
+        <!-- SECTION 2: INSTALLATION -->
+        <h2>2️⃣ Installation avec Vite</h2>
+        
+        <h3>Étape 1 : Créer un projet Vite</h3>
+        <div class="code-block">npm create vite@latest mon-projet<br>cd mon-projet</div>
+        <p>Cela crée un projet Vite avec tous les fichiers nécessaires.</p>
+        
+        <h3>Étape 2 : Installer Tailwind CSS</h3>
+        <div class="code-block">npm install tailwindcss @tailwindcss/vite</div>
+        <p>Cela télécharge Tailwind et le plugin pour Vite.</p>
+        
+        <h3>Étape 3 : Configurer Vite</h3>
+        <p>Ouvrez le fichier <span class="highlight">vite.config.ts</span> et ajoutez :</p>
+        <div class="code-block">import { defineConfig } from 'vite'<br>
+import tailwindcss from '@tailwindcss/vite'<br>
+<br>
+export default defineConfig({<br>
+&nbsp;&nbsp;plugins: [<br>
+&nbsp;&nbsp;&nbsp;&nbsp;tailwindcss(),<br>
+&nbsp;&nbsp;],<br>
+})</div>
+        
+        <h3>Étape 4 : Importer Tailwind dans votre CSS</h3>
+        <p>Dans votre fichier CSS principal (ex: <span class="highlight">src/style.css</span>) :</p>
+        <div class="code-block">@import "tailwindcss";</div>
+        
+        <h3>Étape 5 : Lancer le serveur</h3>
+        <div class="code-block">npm run dev</div>
+        <p>Votre projet est maintenant prêt à utiliser Tailwind CSS !</p>
+        
+        <!-- SECTION 3: CLASSES UTILITAIRES ESSENTIELLES -->
+        <h2>3️⃣ Les Classes Utilitaires Essentielles</h2>
+        
+        <h3>A - Espacement (Padding & Margin)</h3>
+        <p>Tailwind utilise un système d'échelle pour l'espacement (1 unité = 4px)</p>
+        
+        <table>
+            <tr>
+                <th>Classe</th>
+                <th>Propriété CSS</th>
+                <th>Valeur</th>
+            </tr>
+            <tr>
+                <td><span class="tailwind-utility">p-4</span></td>
+                <td>padding</td>
+                <td>16px (1rem)</td>
+            </tr>
+            <tr>
+                <td><span class="tailwind-utility">m-2</span></td>
+                <td>margin</td>
+                <td>8px (0.5rem)</td>
+            </tr>
+            <tr>
+                <td><span class="tailwind-utility">px-8</span></td>
+                <td>padding-left & padding-right</td>
+                <td>32px (2rem)</td>
+            </tr>
+            <tr>
+                <td><span class="tailwind-utility">my-3</span></td>
+                <td>margin-top & margin-bottom</td>
+                <td>12px (0.75rem)</td>
+            </tr>
+        </table>
+        
+        <div class="demo-section">
+            <strong>Exemple en direct :</strong>
+            <div class="demo-item" style="padding: 16px; margin: 8px 0; background: #e3f2fd; border: 1px solid #1976d2;">
+                ✨ p-4 m-2 - Cet élément a 16px de padding et 8px de margin
+            </div>
+        </div>
+        
+        <h3>B - Couleurs (Text, Background, Border)</h3>
+        
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Classes</th>
+                <th>Exemple</th>
+            </tr>
+            <tr>
+                <td><strong>Texte</strong></td>
+                <td><span class="tailwind-utility">text-red-500</span></td>
+                <td><span style="color: #ef4444;">Texte rouge</span></td>
+            </tr>
+            <tr>
+                <td><strong>Arrière-plan</strong></td>
+                <td><span class="tailwind-utility">bg-blue-500</span></td>
+                <td style="background: #3b82f6; color: white; padding: 5px;">Fond bleu</td>
+            </tr>
+            <tr>
+                <td><strong>Bordure</strong></td>
+                <td><span class="tailwind-utility">border-2 border-green-500</span></td>
+                <td style="border: 2px solid #22c55e; padding: 5px;">Bordure verte</td>
+            </tr>
+        </table>
+        
+        <p><strong>Palette de couleurs :</strong> red, orange, yellow, green, blue, indigo, purple, pink, etc.</p>
+        <p><strong>Intensité :</strong> 50, 100, 200, 300, 400, 500, 600, 700, 800, 900</p>
+        
+        <div class="example-box">
+            <strong>Exemple :</strong> <span class="tailwind-utility">text-red-700</span>, 
+            <span class="tailwind-utility">bg-yellow-300</span>, 
+            <span class="tailwind-utility">border-purple-600</span>
+        </div>
+        
+        <h3>C - Typographie</h3>
+        
+        <table>
+            <tr>
+                <th>Classe</th>
+                <th>Propriété</th>
+                <th>Exemple</th>
+            </tr>
+            <tr>
+                <td><span class="tailwind-utility">text-sm</span></td>
+                <td>font-size: 14px</td>
+                <td style="font-size: 14px;">Petit texte</td>
+            </tr>
+            <tr>
+                <td><span class="tailwind-utility">text-lg</span></td>
+                <td>font-size: 18px</td>
+                <td style="font-size: 18px;">Texte grand</td>
+            </tr>
+            <tr>
+                <td><span class="tailwind-utility">font-bold</span></td>
+                <td>font-weight: 700</td>
+                <td style="font-weight: bold;">Texte gras</td>
+            </tr>
+            <tr>
+                <td><span class="tailwind-utility">italic</span></td>
+                <td>font-style: italic</td>
+                <td style="font-style: italic;">Texte italique</td>
+            </tr>
+            <tr>
+                <td><span class="tailwind-utility">underline</span></td>
+                <td>text-decoration: underline</td>
+                <td style="text-decoration: underline;">Texte souligné</td>
+            </tr>
+        </table>
+        
+        <h3>D - Coins Arrondis (Border Radius)</h3>
+        
+        <div class="demo-section">
+            <div class="demo-item" style="border-radius: 0; border: 2px solid #667eea; padding: 20px; margin: 10px 0;">
+                <span class="tailwind-utility">rounded-none</span> - Pas d'arrondi
+            </div>
+            <div class="demo-item" style="border-radius: 4px; border: 2px solid #667eea; padding: 20px; margin: 10px 0;">
+                <span class="tailwind-utility">rounded-sm</span> - Léger arrondi
+            </div>
+            <div class="demo-item" style="border-radius: 8px; border: 2px solid #667eea; padding: 20px; margin: 10px 0;">
+                <span class="tailwind-utility">rounded</span> - Arrondi standard
+            </div>
+            <div class="demo-item" style="border-radius: 16px; border: 2px solid #667eea; padding: 20px; margin: 10px 0;">
+                <span class="tailwind-utility">rounded-lg</span> - Grand arrondi
+            </div>
+            <div class="demo-item" style="border-radius: 9999px; border: 2px solid #667eea; padding: 20px; margin: 10px 0;">
+                <span class="tailwind-utility">rounded-full</span> - Totalement arrondi
+            </div>
+        </div>
+        
+        <!-- SECTION 4: EXEMPLE COMPLET -->
+        <h2>4️⃣ Exemple Complet : Créer une Carte</h2>
+        
+        <p>Voici comment créer une carte (card) avec Tailwind CSS :</p>
+        
+        <div class="code-block">&lt;div class="max-w-sm mx-auto bg-white rounded-lg shadow-lg overflow-hidden"&gt;<br>
+&nbsp;&nbsp;&lt;img src="image.jpg" alt="Image" class="w-full h-48 object-cover" /&gt;<br>
+&nbsp;&nbsp;&lt;div class="p-6"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3 class="text-xl font-bold text-gray-800"&gt;Titre de la carte&lt;/h3&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class="text-gray-600 mt-2"&gt;Ceci est une description courte.&lt;/p&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"&gt;Cliquez-moi&lt;/button&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;<br>
+&lt;/div&gt;</div>
+        
+        <div class="demo-section">
+            <strong>Résultat en direct :</strong>
+            <div style="max-width: 400px; margin: 0 auto; background: white; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); overflow: hidden;">
+                <div style="width: 100%; height: 192px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                <div style="padding: 24px;">
+                    <h3 style="font-size: 20px; font-weight: bold; color: #1f2937;">Titre de la carte</h3>
+                    <p style="color: #4b5563; margin-top: 8px;">Ceci est une description courte.</p>
+                    <button style="margin-top: 16px; padding: 8px 16px; background: #3b82f6; color: white; border: none; border-radius: 4px; cursor: pointer;">Cliquez-moi</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SECTION 5: FLEXBOX & GRID -->
+        <h2>5️⃣ Mise en Page : Flexbox et Grid</h2>
+        
+        <h3>A - Flexbox (Alignement Flexible)</h3>
+        
+        <p><span class="highlight">flex</span> crée un conteneur flexible où les enfants s'alignent horizontalement</p>
+        
+        <div class="code-block">&lt;div class="flex gap-4"&gt;<br>
+&nbsp;&nbsp;&lt;div class="bg-blue-500 text-white p-4"&gt;Item 1&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;div class="bg-blue-500 text-white p-4"&gt;Item 2&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;div class="bg-blue-500 text-white p-4"&gt;Item 3&lt;/div&gt;<br>
+&lt;/div&gt;</div>
+        
+        <div class="demo-section">
+            <div style="display: flex; gap: 16px;">
+                <div style="background: #3b82f6; color: white; padding: 16px; flex: 1;">Item 1</div>
+                <div style="background: #3b82f6; color: white; padding: 16px; flex: 1;">Item 2</div>
+                <div style="background: #3b82f6; color: white; padding: 16px; flex: 1;">Item 3</div>
+            </div>
+        </div>
+        
+        <table>
+            <tr>
+                <th>Classe</th>
+                <th>Effet</th>
+            </tr>
+            <tr>
+                <td><span class="tailwind-utility">justify-center</span></td>
+                <td>Centre horizontalement</td>
+            </tr>
+            <tr>
+                <td><span class="tailwind-utility">items-center</span></td>
+                <td>Centre verticalement</td>
+            </tr>
+            <tr>
+                <td><span class="tailwind-utility">gap-4</span></td>
+                <td>Ajoute de l'espace entre les items</td>
+            </tr>
+            <tr>
+                <td><span class="tailwind-utility">flex-col</span></td>
+                <td>Change la direction en colonne</td>
+            </tr>
+        </table>
+        
+        <h3>B - Grid (Grille)</h3>
+        
+        <p><span class="highlight">grid</span> crée une grille avec des colonnes et des lignes</p>
+        
+        <div class="code-block">&lt;div class="grid grid-cols-3 gap-4"&gt;<br>
+&nbsp;&nbsp;&lt;div class="bg-red-500 p-4"&gt;Col 1&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;div class="bg-red-500 p-4"&gt;Col 2&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;div class="bg-red-500 p-4"&gt;Col 3&lt;/div&gt;<br>
+&lt;/div&gt;</div>
+        
+        <div class="demo-section">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+                <div style="background: #ef4444; color: white; padding: 16px;">Col 1</div>
+                <div style="background: #ef4444; color: white; padding: 16px;">Col 2</div>
+                <div style="background: #ef4444; color: white; padding: 16px;">Col 3</div>
+            </div>
+        </div>
+        
+        <!-- SECTION 6: RESPONSIVE DESIGN -->
+        <h2>6️⃣ Design Responsive (Mobile-First)</h2>
+        
+        <p>Tailwind utilise les <span class="highlight">breakpoints</span> pour adapter le design à différentes tailles d'écran :</p>
+        
+        <table>
+            <tr>
+                <th>Breakpoint</th>
+                <th>Classe</th>
+                <th>Taille d'écran</th>
+            </tr>
+            <tr>
+                <td>Mobile (défaut)</td>
+                <td>(pas de préfixe)</td>
+                <td>Moins de 640px</td>
+            </tr>
+            <tr>
+                <td>Tablet</td>
+                <td><span class="tailwind-utility">sm:</span></td>
+                <td>≥ 640px</td>
+            </tr>
+            <tr>
+                <td>Desktop</td>
+                <td><span class="tailwind-utility">md:</span></td>
+                <td>≥ 768px</td>
+            </tr>
+            <tr>
+                <td>Large Desktop</td>
+                <td><span class="tailwind-utility">lg:</span></td>
+                <td>≥ 1024px</td>
+            </tr>
+            <tr>
+                <td>Extra Large</td>
+                <td><span class="tailwind-utility">xl:</span></td>
+                <td>≥ 1280px</td>
+            </tr>
+        </table>
+        
+        <div class="code-block">// Sur mobile : 1 colonne<br>
+// Sur tablette : 2 colonnes<br>
+// Sur desktop : 3 colonnes<br>
+&lt;div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"&gt;<br>
+&nbsp;&nbsp;&lt;div&gt;Card 1&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;div&gt;Card 2&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;div&gt;Card 3&lt;/div&gt;<br>
+&lt;/div&gt;</div>
+        
+        <div class="note">
+            <strong>Conseil :</strong> Tailwind utilise "mobile-first" : commencez par les styles mobile (sans préfixe), 
+            puis ajoutez les styles pour les écrans plus grands avec <span class="tailwind-utility">md:</span>, <span class="tailwind-utility">lg:</span>, etc.
+        </div>
+        
+        <!-- SECTION 7: ÉTATS (HOVER, FOCUS, etc) -->
+        <h2>7️⃣ États Interactifs (Hover, Focus, etc)</h2>
+        
+        <p>Tailwind vous permet de styliser les états des éléments :</p>
+        
+        <div class="code-block">&lt;button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"&gt;<br>
+&nbsp;&nbsp;Bouton interactif<br>
+&lt;/button&gt;</div>
+        
+        <table>
+            <tr>
+                <th>État</th>
+                <th>Classe</th>
+                <th>Quand l'utiliser</th>
+            </tr>
+            <tr>
+                <td><span class="highlight">hover:</span></td>
+                <td><span class="tailwind-utility">hover:bg-blue-600</span></td>
+                <td>Quand le curseur passe sur l'élément</td>
+            </tr>
+            <tr>
+                <td><span class="highlight">focus:</span></td>
+                <td><span class="tailwind-utility">focus:ring-2</span></td>
+                <td>Quand l'élément reçoit le focus</td>
+            </tr>
+            <tr>
+                <td><span class="highlight">active:</span></td>
+                <td><span class="tailwind-utility">active:scale-95</span></td>
+                <td>Quand on clique sur l'élément</td>
+            </tr>
+            <tr>
+                <td><span class="highlight">disabled:</span></td>
+                <td><span class="tailwind-utility">disabled:opacity-50</span></td>
+                <td>Quand l'élément est désactivé</td>
+            </tr>
+        </table>
+        
+        <!-- SECTION 8: RÉSUMÉ CHEAT SHEET -->
+        <h2>8️⃣ Cheat Sheet - Classes Essentielles</h2>
+        
+        <h3>Espacement</h3>
+        <div class="example-box">
+            <span class="tailwind-utility">p-2, p-4, p-6</span> (padding)<br>
+            <span class="tailwind-utility">m-2, m-4, m-6</span> (margin)<br>
+            <span class="tailwind-utility">px-4, py-2</span> (horizontal/vertical)<br>
+            <span class="tailwind-utility">gap-4</span> (espace entre enfants)
+        </div>
+        
+        <h3>Couleurs</h3>
+        <div class="example-box">
+            <span class="tailwind-utility">text-blue-500</span> (couleur du texte)<br>
+            <span class="tailwind-utility">bg-red-500</span> (couleur de fond)<br>
+            <span class="tailwind-utility">border-green-500</span> (couleur de bordure)
+        </div>
+        
+        <h3>Taille & Texte</h3>
+        <div class="example-box">
+            <span class="tailwind-utility">w-full, w-1/2</span> (largeur)<br>
+            <span class="tailwind-utility">h-32, h-64</span> (hauteur)<br>
+            <span class="tailwind-utility">text-lg, text-2xl</span> (taille du texte)<br>
+            <span class="tailwind-utility">font-bold, font-semibold</span> (poids)
+        </div>
+        
+        <h3>Layout</h3>
+        <div class="example-box">
+            <span class="tailwind-utility">flex</span> (flexbox)<br>
+            <span class="tailwind-utility">grid</span> (grille)<br>
+            <span class="tailwind-utility">justify-center, items-center</span> (centrer)<br>
+            <span class="tailwind-utility">grid-cols-3</span> (3 colonnes)
+        </div>
+        
+        <h3>Arrondi & Ombre</h3>
+        <div class="example-box">
+            <span class="tailwind-utility">rounded, rounded-lg</span> (coins arrondis)<br>
+            <span class="tailwind-utility">shadow, shadow-lg</span> (ombre)<br>
+            <span class="tailwind-utility">border-2, border-4</span> (bordure)
+        </div>
+        
+        <!-- SECTION 9: EXEMPLES DE MENUS -->
+        <h2>9️⃣ Exemples de Menus avec Tailwind</h2>
+        
+        <h3>A - Menu Horizontal Simple</h3>
+        <p>Un menu classique avec liens alignés horizontalement :</p>
+        
+        <div class="code-block">&lt;nav class="bg-blue-600 text-white"&gt;<br>
+&nbsp;&nbsp;&lt;div class="max-w-7xl mx-auto px-4"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="flex justify-between items-center h-16"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="text-2xl font-bold"&gt;Logo&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="flex gap-8"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="hover:text-blue-200"&gt;Accueil&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="hover:text-blue-200"&gt;Services&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="hover:text-blue-200"&gt;À propos&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="hover:text-blue-200"&gt;Contact&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;<br>
+&lt;/nav&gt;</div>
+        
+        <div class="demo-section">
+            <strong>Résultat en direct :</strong>
+            <nav style="background: #1e40af; color: white;">
+                <div style="max-width: 80rem; margin: 0 auto; padding: 0 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; height: 64px;">
+                        <div style="font-size: 24px; font-weight: bold;">Logo</div>
+                        <ul style="display: flex; gap: 32px; list-style: none; margin: 0; padding: 0;">
+                            <li><a href="#" style="color: white; text-decoration: none;">Accueil</a></li>
+                            <li><a href="#" style="color: white; text-decoration: none;">Services</a></li>
+                            <li><a href="#" style="color: white; text-decoration: none;">À propos</a></li>
+                            <li><a href="#" style="color: white; text-decoration: none;">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        
+        <h3>B - Menu avec Effets au Survol</h3>
+        <p>Menu avec des transitions et changements de couleur au hover :</p>
+        
+        <div class="code-block">&lt;nav class="bg-gray-800"&gt;<br>
+&nbsp;&nbsp;&lt;ul class="flex"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#" class="block px-4 py-3 text-white border-b-4 border-transparent hover:border-blue-500 hover:bg-gray-700 transition"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accueil<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#" class="block px-4 py-3 text-white border-b-4 border-transparent hover:border-blue-500 hover:bg-gray-700 transition"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Services<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>
+&nbsp;&nbsp;&lt;/ul&gt;<br>
+&lt;/nav&gt;</div>
+        
+        <div class="demo-section">
+            <strong>Résultat en direct :</strong>
+            <nav style="background: #1f2937;">
+                <ul style="display: flex; list-style: none; margin: 0; padding: 0;">
+                    <li style="margin: 0;">
+                        <a href="#" style="display: block; padding: 12px 16px; color: white; text-decoration: none; border-bottom: 4px solid transparent; background: #1f2937;">Accueil</a>
+                    </li>
+                    <li style="margin: 0;">
+                        <a href="#" style="display: block; padding: 12px 16px; color: white; text-decoration: none; border-bottom: 4px solid transparent; background: #1f2937;">Services</a>
+                    </li>
+                    <li style="margin: 0;">
+                        <a href="#" style="display: block; padding: 12px 16px; color: white; text-decoration: none; border-bottom: 4px solid #3b82f6; background: #111827;">Produits</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        
+        <h3>C - Menu Vertical (Sidebar)</h3>
+        <p>Menu latéral pour une disposition avec barre latérale :</p>
+        
+        <div class="code-block">&lt;div class="flex"&gt;<br>
+&nbsp;&nbsp;&lt;aside class="w-64 bg-gray-900 text-white p-6"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2 class="text-2xl font-bold mb-8"&gt;Menu&lt;/h2&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="space-y-4"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="flex items-center gap-3 p-3 rounded hover:bg-gray-800"&gt;🏠 Accueil&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="flex items-center gap-3 p-3 rounded hover:bg-gray-800"&gt;📊 Dashboard&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="flex items-center gap-3 p-3 rounded hover:bg-gray-800"&gt;⚙️ Paramètres&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&lt;/aside&gt;<br>
+&nbsp;&nbsp;&lt;main class="flex-1 p-8"&gt;Contenu principal&lt;/main&gt;<br>
+&lt;/div&gt;</div>
+        
+        <div class="demo-section">
+            <strong>Résultat en direct :</strong>
+            <div style="display: flex; height: 300px; background: white;">
+                <aside style="width: 256px; background: #111827; color: white; padding: 24px;">
+                    <h2 style="font-size: 24px; font-weight: bold; margin-bottom: 32px;">Menu</h2>
+                    <ul style="list-style: none; margin: 0; padding: 0;">
+                        <li style="margin-bottom: 16px;">
+                            <a href="#" style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 6px; color: white; text-decoration: none; background: #111827;">🏠 Accueil</a>
+                        </li>
+                        <li style="margin-bottom: 16px;">
+                            <a href="#" style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 6px; color: white; text-decoration: none; background: #1f2937;">📊 Dashboard</a>
+                        </li>
+                        <li style="margin-bottom: 16px;">
+                            <a href="#" style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 6px; color: white; text-decoration: none; background: #111827;">⚙️ Paramètres</a>
+                        </li>
+                    </ul>
+                </aside>
+                <main style="flex: 1; padding: 32px; color: #666;">Contenu principal</main>
+            </div>
+        </div>
+        
+        <h3>D - Menu Responsive avec Hambourgeois (pour mobile)</h3>
+        <p>Menu qui se transforme en hamburger sur mobile. Note: Nécessite du JavaScript pour la fonctionnalité complète</p>
+        
+        <div class="code-block">&lt;nav class="bg-blue-600 text-white"&gt;<br>
+&nbsp;&nbsp;&lt;div class="max-w-7xl mx-auto px-4"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="flex justify-between items-center h-16"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="text-2xl font-bold"&gt;Logo&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Menu desktop --&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="hidden md:flex gap-8"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" &gt;Accueil&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" &gt;Services&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" &gt;Contact&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Hamburger button --&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button id="menu-btn" class="md:hidden text-2xl"&gt;☰&lt;/button&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Menu mobile --&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul id="menu" class="hidden flex-col gap-4 bg-blue-700 p-4"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" &gt;Accueil&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" &gt;Services&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" &gt;Contact&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;<br>
+&lt;/nav&gt;</div>
+        
+        <div class="demo-section">
+            <strong>Résultat en direct (Desktop) :</strong>
+            <nav style="background: #1e40af; color: white;">
+                <div style="max-width: 80rem; margin: 0 auto; padding: 0 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; height: 64px;">
+                        <div style="font-size: 24px; font-weight: bold;">Logo</div>
+                        <ul style="display: flex; gap: 32px; list-style: none; margin: 0; padding: 0;">
+                            <li><a href="#" style="color: white; text-decoration: none;">Accueil</a></li>
+                            <li><a href="#" style="color: white; text-decoration: none;">Services</a></li>
+                            <li><a href="#" style="color: white; text-decoration: none;">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        
+        <h3>E - Menu Déroulant (Dropdown)</h3>
+        <p>Menu avec sous-éléments qui s'affichent au survol :</p>
+        
+        <div class="code-block">&lt;nav class="bg-gray-800 text-white"&gt;<br>
+&nbsp;&nbsp;&lt;ul class="flex p-4 gap-6"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;li class="relative group"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#" class="hover:text-blue-400"&gt;Services&lt;/a&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="absolute left-0 hidden group-hover:block bg-gray-700 mt-0 rounded"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="block px-4 py-2 hover:bg-gray-600"&gt;Service 1&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="block px-4 py-2 hover:bg-gray-600"&gt;Service 2&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="block px-4 py-2 hover:bg-gray-600"&gt;Service 3&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>
+&nbsp;&nbsp;&lt;/ul&gt;<br>
+&lt;/nav&gt;</div>
+        
+        <div class="demo-section">
+            <strong>Résultat en direct (survolez "Services") :</strong>
+            <nav style="background: #1f2937; color: white;">
+                <ul style="display: flex; padding: 16px; gap: 24px; list-style: none; margin: 0;">
+                    <li style="position: relative;">
+                        <a href="#" style="color: white; text-decoration: none;">Services</a>
+                        <ul style="position: absolute; left: 0; display: none; background: #374151; margin-top: 0; border-radius: 6px; list-style: none; margin: 0; padding: 0; z-index: 10; min-width: 150px;">
+                            <li><a href="#" style="display: block; padding: 8px 16px; color: white; text-decoration: none;">Service 1</a></li>
+                            <li><a href="#" style="display: block; padding: 8px 16px; color: white; text-decoration: none;">Service 2</a></li>
+                            <li><a href="#" style="display: block; padding: 8px 16px; color: white; text-decoration: none;">Service 3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        
+        <h3>F - Sous-Menu Avancé avec Icônes</h3>
+        <p>Un sous-menu sophistiqué avec icônes et descriptions :</p>
+        
+        <div class="code-block">&lt;nav class="bg-white shadow"&gt;<br>
+&nbsp;&nbsp;&lt;div class="max-w-7xl mx-auto px-4"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="flex h-16 items-center justify-between"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="text-2xl font-bold text-gray-800"&gt;Logo&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="flex gap-8"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li class="relative group"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#" class="text-gray-700 hover:text-blue-600 font-medium"&gt;Produits ▼&lt;/a&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="absolute left-0 hidden group-hover:block bg-white shadow-lg rounded-lg mt-0 pt-2"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#" class="flex gap-3 px-4 py-3 hover:bg-gray-100 min-w-max"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="text-2xl"&gt;📦&lt;/span&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="font-semibold text-gray-900"&gt;Produit 1&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="text-sm text-gray-600"&gt;Description courte&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#" class="flex gap-3 px-4 py-3 hover:bg-gray-100"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="text-2xl"&gt;🎯&lt;/span&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="font-semibold text-gray-900"&gt;Produit 2&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="text-sm text-gray-600"&gt;Description courte&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;hr class="my-2"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#" class="block px-4 py-3 text-blue-600 font-semibold hover:bg-gray-100"&gt;Voir tous les produits →&lt;/a&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;<br>
+&lt;/nav&gt;</div>
+        
+        <div class="demo-section">
+            <strong>Résultat en direct (survolez "Produits") :</strong>
+            <nav style="background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                <div style="max-width: 80rem; margin: 0 auto; padding: 0 16px;">
+                    <div style="display: flex; height: 64px; align-items: center; justify-content: space-between;">
+                        <div style="font-size: 24px; font-weight: bold; color: #1f2937;">Logo</div>
+                        <ul style="display: flex; gap: 32px; list-style: none; margin: 0; padding: 0;">
+                            <li style="position: relative;">
+                                <a href="#" style="color: #374151; text-decoration: none; font-weight: 500;">Produits ▼</a>
+                                <div style="position: absolute; left: 0; display: none; background: white; box-shadow: 0 10px 15px rgba(0,0,0,0.1); border-radius: 8px; margin-top: 0; padding-top: 8px; z-index: 10;">
+                                    <a href="#" style="display: flex; gap: 12px; padding: 12px 16px; text-decoration: none; color: inherit; min-width: 280px;">
+                                        <span style="font-size: 24px;">📦</span>
+                                        <div>
+                                            <div style="font-weight: 600; color: #111827;">Produit 1</div>
+                                            <div style="font-size: 14px; color: #4b5563;">Description courte</div>
+                                        </div>
+                                    </a>
+                                    <a href="#" style="display: flex; gap: 12px; padding: 12px 16px; text-decoration: none; color: inherit;">
+                                        <span style="font-size: 24px;">🎯</span>
+                                        <div>
+                                            <div style="font-weight: 600; color: #111827;">Produit 2</div>
+                                            <div style="font-size: 14px; color: #4b5563;">Description courte</div>
+                                        </div>
+                                    </a>
+                                    <hr style="margin: 8px 0; border: none; border-top: 1px solid #e5e7eb;">
+                                    <a href="#" style="display: block; padding: 12px 16px; text-decoration: none; color: #2563eb; font-weight: 600;">Voir tous les produits →</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        
+        <h3>G - Sous-Menu Multiniveaux (Nested)</h3>
+        <p>Un menu avec plusieurs niveaux de profondeur :</p>
+        
+        <div class="code-block">&lt;nav class="bg-gray-100"&gt;<br>
+&nbsp;&nbsp;&lt;ul class="max-w-7xl mx-auto"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;li class="relative group border-b border-gray-300"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#" class="block px-6 py-4 text-gray-800 hover:bg-gray-200"&gt;Entreprise ▼&lt;/a&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Premier niveau --&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="absolute left-0 hidden group-hover:block bg-white shadow-lg min-w-max"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li class="relative group"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#" class="block px-6 py-3 text-gray-800 hover:bg-gray-100 flex items-center justify-between"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;À propos <span class="text-sm"&gt;&gt;&lt;/span&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Deuxième niveau --&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="absolute left-full top-0 hidden group-hover:block bg-white shadow-lg"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="block px-6 py-3 text-gray-800 hover:bg-gray-100"&gt;Qui sommes-nous&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="block px-6 py-3 text-gray-800 hover:bg-gray-100"&gt;Notre histoire&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="block px-6 py-3 text-gray-800 hover:bg-gray-100"&gt;Notre équipe&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#" class="block px-6 py-3 text-gray-800 hover:bg-gray-100"&gt;Carrières&lt;/a&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#" class="block px-6 py-3 text-gray-800 hover:bg-gray-100"&gt;Presse&lt;/a&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>
+&nbsp;&nbsp;&lt;/ul&gt;<br>
+&lt;/nav&gt;</div>
+        
+        <div class="demo-section">
+            <strong>Résultat en direct (survolez "Entreprise" puis "À propos") :</strong>
+            <nav style="background: #f3f4f6;">
+                <ul style="max-width: 80rem; margin: 0 auto; list-style: none; padding: 0;">
+                    <li style="position: relative; border-bottom: 1px solid #d1d5db;">
+                        <a href="#" style="display: block; padding: 16px 24px; color: #1f2937; text-decoration: none;">Entreprise ▼</a>
+                        <ul style="position: absolute; left: 0; display: none; background: white; box-shadow: 0 10px 15px rgba(0,0,0,0.1); list-style: none; padding: 0; margin: 0; min-width: 250px; z-index: 10;">
+                            <li style="position: relative;">
+                                <a href="#" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; color: #1f2937; text-decoration: none;">
+                                    À propos <span style="font-size: 12px;">&gt;&gt;</span>
+                                </a>
+                                <ul style="position: absolute; left: 100%; top: 0; display: none; background: white; box-shadow: 0 10px 15px rgba(0,0,0,0.1); list-style: none; padding: 0; margin: 0;">
+                                    <li><a href="#" style="display: block; padding: 12px 24px; color: #1f2937; text-decoration: none;">Qui sommes-nous</a></li>
+                                    <li><a href="#" style="display: block; padding: 12px 24px; color: #1f2937; text-decoration: none;">Notre histoire</a></li>
+                                    <li><a href="#" style="display: block; padding: 12px 24px; color: #1f2937; text-decoration: none;">Notre équipe</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#" style="display: block; padding: 12px 24px; color: #1f2937; text-decoration: none;">Carrières</a></li>
+                            <li><a href="#" style="display: block; padding: 12px 24px; color: #1f2937; text-decoration: none;">Presse</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        
+        <h3>H - Sous-Menu en Grille (Mega Menu)</h3>
+        <p>Un énorme menu déroulant avec contenu en grille, idéal pour les grands e-commerces :</p>
+        
+        <div class="code-block">&lt;nav class="bg-white shadow"&gt;<br>
+&nbsp;&nbsp;&lt;div class="max-w-7xl mx-auto px-4"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="flex h-16 items-center"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="flex-1 text-2xl font-bold"&gt;Logo&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="flex gap-8"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li class="relative group"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#" class="text-gray-800 hover:text-blue-600 font-medium"&gt;Catégories ▼&lt;/a&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="absolute left-0 hidden group-hover:block bg-white shadow-xl rounded-lg w-96 p-6 mt-0"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="grid grid-cols-2 gap-6"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4 class="font-bold text-gray-900 mb-3"&gt;Vêtements&lt;/h4&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="space-y-2"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="text-gray-600 hover:text-blue-600"&gt;T-shirts&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="text-gray-600 hover:text-blue-600"&gt;Jeans&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="text-gray-600 hover:text-blue-600"&gt;Robes&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4 class="font-bold text-gray-900 mb-3"&gt;Accessoires&lt;/h4&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="space-y-2"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="text-gray-600 hover:text-blue-600"&gt;Sacs&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="text-gray-600 hover:text-blue-600"&gt;Chaussures&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="text-gray-600 hover:text-blue-600"&gt;Bijoux&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;hr class="my-4"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#" class="text-blue-600 font-semibold hover:text-blue-700"&gt;✨ Voir nos dernières collections&lt;/a&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;<br>
+&lt;/nav&gt;</div>
+        
+        <div class="demo-section">
+            <strong>Résultat en direct (survolez "Catégories") :</strong>
+            <nav style="background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                <div style="max-width: 80rem; margin: 0 auto; padding: 0 16px;">
+                    <div style="display: flex; height: 64px; align-items: center;">
+                        <div style="flex: 1; font-size: 24px; font-weight: bold;">Logo</div>
+                        <ul style="display: flex; gap: 32px; list-style: none; margin: 0; padding: 0;">
+                            <li style="position: relative;">
+                                <a href="#" style="color: #1f2937; text-decoration: none; font-weight: 500;">Catégories ▼</a>
+                                <div style="position: absolute; left: 0; display: none; background: white; box-shadow: 0 20px 25px rgba(0,0,0,0.1); border-radius: 8px; width: 384px; padding: 24px; margin-top: 0; z-index: 10;">
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                                        <div>
+                                            <h4 style="font-weight: bold; color: #111827; margin-bottom: 12px;">Vêtements</h4>
+                                            <ul style="list-style: none; margin: 0; padding: 0;">
+                                                <li style="margin-bottom: 8px;"><a href="#" style="color: #4b5563; text-decoration: none;">T-shirts</a></li>
+                                                <li style="margin-bottom: 8px;"><a href="#" style="color: #4b5563; text-decoration: none;">Jeans</a></li>
+                                                <li style="margin-bottom: 8px;"><a href="#" style="color: #4b5563; text-decoration: none;">Robes</a></li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 style="font-weight: bold; color: #111827; margin-bottom: 12px;">Accessoires</h4>
+                                            <ul style="list-style: none; margin: 0; padding: 0;">
+                                                <li style="margin-bottom: 8px;"><a href="#" style="color: #4b5563; text-decoration: none;">Sacs</a></li>
+                                                <li style="margin-bottom: 8px;"><a href="#" style="color: #4b5563; text-decoration: none;">Chaussures</a></li>
+                                                <li style="margin-bottom: 8px;"><a href="#" style="color: #4b5563; text-decoration: none;">Bijoux</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <hr style="margin: 16px 0; border: none; border-top: 1px solid #e5e7eb;">
+                                    <a href="#" style="color: #2563eb; font-weight: 600; text-decoration: none;">✨ Voir nos dernières collections</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        
+        <h3>I - Menu Hamburger Animé avec Icône X</h3>
+        <p>Un hamburger menu avec animation de l'icône (transforme ☰ en ✕) :</p>
+        
+        <div class="code-block">&lt;nav class="bg-blue-600 text-white"&gt;<br>
+&nbsp;&nbsp;&lt;div class="max-w-7xl mx-auto px-4"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="flex justify-between items-center h-16"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="text-2xl font-bold"&gt;Logo&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Menu desktop --&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="hidden md:flex gap-8"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#"&gt;Accueil&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#"&gt;Services&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#"&gt;À propos&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Hamburger button avec animation --&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button id="hamburger" class="md:hidden text-3xl transition-transform duration-300"&gt;☰&lt;/button&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Menu mobile animé --&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul id="mobile-menu" class="hidden flex-col gap-4 bg-blue-700 p-4 md:hidden max-h-0 overflow-hidden transition-all duration-300"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="block px-4 py-2 hover:bg-blue-600 rounded"&gt;Accueil&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="block px-4 py-2 hover:bg-blue-600 rounded"&gt;Services&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="block px-4 py-2 hover:bg-blue-600 rounded"&gt;À propos&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;<br>
+&lt;/nav&gt;<br>
+<br>
+&lt;script&gt;<br>
+&nbsp;&nbsp;const btn = document.getElementById('hamburger');<br>
+&nbsp;&nbsp;const menu = document.getElementById('mobile-menu');<br>
+&nbsp;&nbsp;btn.addEventListener('click', () =&gt; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;menu.classList.toggle('hidden');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;btn.textContent = btn.textContent === '☰' ? '✕' : '☰';<br>
+&nbsp;&nbsp;&nbsp;&nbsp;btn.style.transform = btn.textContent === '✕' ? 'rotate(90deg)' : 'rotate(0deg)';<br>
+&nbsp;&nbsp;});<br>
+&lt;/script&gt;</div>
+        
+        <div class="demo-section">
+            <strong>Résultat en direct :</strong>
+            <nav style="background: #1e40af; color: white;">
+                <div style="max-width: 80rem; margin: 0 auto; padding: 0 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; height: 64px;">
+                        <div style="font-size: 24px; font-weight: bold;">Logo</div>
+                        <button id="demo-hamburger" style="background: none; border: none; color: white; font-size: 24px; cursor: pointer; transition: transform 0.3s;">☰</button>
+                    </div>
+                    <ul id="demo-mobile-menu" style="display: none; flex-direction: column; gap: 16px; background: #1e3a8a; padding: 16px; transition: all 0.3s;">
+                        <li><a href="#" style="display: block; padding: 8px 16px; color: white; text-decoration: none; border-radius: 6px;">Accueil</a></li>
+                        <li><a href="#" style="display: block; padding: 8px 16px; color: white; text-decoration: none; border-radius: 6px;">Services</a></li>
+                        <li><a href="#" style="display: block; padding: 8px 16px; color: white; text-decoration: none; border-radius: 6px;">À propos</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        
+        <h3>J - Menu Hamburger avec Sidebar Coulissante</h3>
+        <p>Un menu hamburger qui déploie une barre latérale de côté avec overlay semi-transparent :</p>
+        
+        <div class="code-block">&lt;!-- Overlay --&gt;<br>
+&lt;div id="overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"&gt;&lt;/div&gt;<br>
+<br>
+&lt;nav class="bg-white shadow"&gt;<br>
+&nbsp;&nbsp;&lt;div class="max-w-7xl mx-auto px-4"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="flex justify-between items-center h-16"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="text-2xl font-bold text-gray-800"&gt;Logo&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Menu desktop --&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="hidden md:flex gap-8"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="text-gray-700"&gt;Accueil&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="text-gray-700"&gt;Produits&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="text-gray-700"&gt;Contact&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button id="menu-toggle" class="md:hidden text-gray-800 text-2xl"&gt;☰&lt;/button&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;<br>
+&lt;/nav&gt;<br>
+<br>
+&lt;!-- Sidebar mobile --&gt;<br>
+&lt;div id="sidebar" class="fixed left-0 top-0 w-64 h-full bg-gray-900 text-white transform -translate-x-full transition-transform duration-300 z-50 md:hidden"&gt;<br>
+&nbsp;&nbsp;&lt;div class="p-6"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;button id="close-btn" class="text-2xl mb-8"&gt;✕&lt;/button&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="space-y-4"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="block px-4 py-2 hover:bg-gray-800 rounded"&gt;🏠 Accueil&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="block px-4 py-2 hover:bg-gray-800 rounded"&gt;📦 Produits&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="block px-4 py-2 hover:bg-gray-800 rounded"&gt;📞 Contact&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="block px-4 py-2 hover:bg-gray-800 rounded"&gt;⚙️ Paramètres&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;<br>
+&lt;/div&gt;<br>
+<br>
+&lt;script&gt;<br>
+&nbsp;&nbsp;const toggle = document.getElementById('menu-toggle');<br>
+&nbsp;&nbsp;const sidebar = document.getElementById('sidebar');<br>
+&nbsp;&nbsp;const overlay = document.getElementById('overlay');<br>
+&nbsp;&nbsp;const closeBtn = document.getElementById('close-btn');<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;function openMenu() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;sidebar.classList.remove('-translate-x-full');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;overlay.classList.remove('hidden');<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;function closeMenu() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;sidebar.classList.add('-translate-x-full');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;overlay.classList.add('hidden');<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;toggle.addEventListener('click', openMenu);<br>
+&nbsp;&nbsp;closeBtn.addEventListener('click', closeMenu);<br>
+&nbsp;&nbsp;overlay.addEventListener('click', closeMenu);<br>
+&lt;/script&gt;</div>
+        
+        <div class="demo-section">
+            <strong>Résultat en direct :</strong>
+            <nav style="background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                <div style="max-width: 80rem; margin: 0 auto; padding: 0 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; height: 64px;">
+                        <div style="font-size: 24px; font-weight: bold; color: #1f2937;">Logo</div>
+                        <button id="demo-sidebar-toggle" style="background: none; border: none; color: #1f2937; font-size: 24px; cursor: pointer;">☰</button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        
+        <h3>K - Menu Hamburger avec Badge de Notification</h3>
+        <p>Un hamburger menu avec badge notation sur certains éléments :</p>
+        
+        <div class="code-block">&lt;nav class="bg-gradient-to-r from-purple-600 to-blue-600 text-white"&gt;<br>
+&nbsp;&nbsp;&lt;div class="max-w-7xl mx-auto px-4"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="flex justify-between items-center h-16"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="text-2xl font-bold"&gt;Logo&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Menu desktop --&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="hidden md:flex gap-8"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#"&gt;Accueil&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li class="relative"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#"&gt;Messages&lt;/a&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="absolute -top-2 -right-3 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"&gt;3&lt;/span&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#"&gt;Profil&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button class="md:hidden text-2xl"&gt;☰&lt;/button&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Menu mobile --&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="hidden md:hidden flex-col gap-2 bg-purple-700 p-4"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="block px-4 py-2 hover:bg-purple-600 rounded"&gt;Accueil&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li class="relative"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#" class="block px-4 py-2 hover:bg-purple-600 rounded"&gt;Messages&lt;/a&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="absolute right-2 top-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"&gt;3&lt;/span&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="block px-4 py-2 hover:bg-purple-600 rounded"&gt;Profil&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;<br>
+&lt;/nav&gt;</div>
+        
+        <div class="demo-section">
+            <strong>Résultat en direct :</strong>
+            <nav style="background: linear-gradient(to right, #9333ea, #2563eb); color: white;">
+                <div style="max-width: 80rem; margin: 0 auto; padding: 0 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; height: 64px;">
+                        <div style="font-size: 24px; font-weight: bold;">Logo</div>
+                        <ul style="display: flex; gap: 32px; list-style: none; margin: 0; padding: 0;">
+                            <li><a href="#" style="color: white; text-decoration: none;">Accueil</a></li>
+                            <li style="position: relative;">
+                                <a href="#" style="color: white; text-decoration: none;">Messages</a>
+                                <span style="position: absolute; top: -8px; right: -12px; background: #ef4444; color: white; font-size: 12px; border-radius: 9999px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;">3</span>
+                            </li>
+                            <li><a href="#" style="color: white; text-decoration: none;">Profil</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        
+        <h3>L - Menu Hamburger avec Recherche</h3>
+        <p>Un hamburger menu mobile incluant une barre de recherche :</p>
+        
+        <div class="code-block">&lt;nav class="bg-gray-900 text-white"&gt;<br>
+&nbsp;&nbsp;&lt;div class="max-w-7xl mx-auto px-4"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="flex justify-between items-center h-16"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="text-2xl font-bold"&gt;Logo&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Menu desktop --&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="hidden md:flex gap-8"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#"&gt;Accueil&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#"&gt;Blog&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button id="hamburger-search" class="md:hidden text-2xl"&gt;☰&lt;/button&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Menu mobile --&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div id="menu-search" class="hidden md:hidden pb-4"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" placeholder="Rechercher..." class="w-full px-4 py-2 rounded bg-gray-800 text-white mb-4" /&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="space-y-2"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="block px-4 py-2 hover:bg-gray-800 rounded"&gt;Accueil&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="block px-4 py-2 hover:bg-gray-800 rounded"&gt;Blog&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="block px-4 py-2 hover:bg-gray-800 rounded"&gt;Galerie&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;<br>
+&lt;/nav&gt;<br>
+<br>
+&lt;script&gt;<br>
+&nbsp;&nbsp;document.getElementById('hamburger-search').addEventListener('click', () =&gt; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;const menu = document.getElementById('menu-search');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;menu.classList.toggle('hidden');<br>
+&nbsp;&nbsp;});<br>
+&lt;/script&gt;</div>
+        
+        <div class="demo-section">
+            <strong>Résultat en direct :</strong>
+            <nav style="background: #111827; color: white;">
+                <div style="max-width: 80rem; margin: 0 auto; padding: 0 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; height: 64px;">
+                        <div style="font-size: 24px; font-weight: bold;">Logo</div>
+                        <button style="background: none; border: none; color: white; font-size: 24px; cursor: pointer;">☰</button>
+                    </div>
+                    <div style="padding-bottom: 16px;">
+                        <input type="text" placeholder="Rechercher..." style="width: 100%; padding: 8px 16px; border-radius: 6px; background: #1f2937; color: white; margin-bottom: 16px; border: 1px solid #374151;" />
+                        <ul style="list-style: none; margin: 0; padding: 0;">
+                            <li><a href="#" style="display: block; padding: 8px 16px; border-radius: 6px; color: white; text-decoration: none;">Accueil</a></li>
+                            <li><a href="#" style="display: block; padding: 8px 16px; border-radius: 6px; color: white; text-decoration: none;">Blog</a></li>
+                            <li><a href="#" style="display: block; padding: 8px 16px; border-radius: 6px; color: white; text-decoration: none;">Galerie</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        
+        <!-- SECTION 10: RESPONSIVITÉ APPROFONDIE -->
+        <h2>🔟 Responsivité Approfondie avec Tailwind CSS</h2>
+        
+        <p>La responsivité est l'une des forces principales de Tailwind CSS. Voyons comment créer des designs qui s'adaptent parfaitement à tous les appareils !</p>
+        
+        <h3>A - Comprendre les Breakpoints</h3>
+        
+        <p>Tailwind utilise un système "mobile-first", ce qui signifie :</p>
+        <ul>
+            <li>Vous définissez d'abord les styles pour mobile (sans préfixe)</li>
+            <li>Puis vous les modifiez progressivement pour les écrans plus grands avec des préfixes</li>
+        </ul>
+        
+        <table>
+            <tr>
+                <th>Nom</th>
+                <th>Préfixe</th>
+                <th>Largeur d'écran</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><span class="highlight">Mobile</span></td>
+                <td>(aucun)</td>
+                <td>Moins de 640px</td>
+                <td>Téléphones portrait</td>
+            </tr>
+            <tr>
+                <td><span class="highlight">Small</span></td>
+                <td><span class="tailwind-utility">sm:</span></td>
+                <td>≥ 640px</td>
+                <td>Téléphones landscape / petites tablettes</td>
+            </tr>
+            <tr>
+                <td><span class="highlight">Medium</span></td>
+                <td><span class="tailwind-utility">md:</span></td>
+                <td>≥ 768px</td>
+                <td>Tablettes</td>
+            </tr>
+            <tr>
+                <td><span class="highlight">Large</span></td>
+                <td><span class="tailwind-utility">lg:</span></td>
+                <td>≥ 1024px</td>
+                <td>Ordinateurs portables</td>
+            </tr>
+            <tr>
+                <td><span class="highlight">Extra Large</span></td>
+                <td><span class="tailwind-utility">xl:</span></td>
+                <td>≥ 1280px</td>
+                <td>Écrans de bureau</td>
+            </tr>
+            <tr>
+                <td><span class="highlight">2XL</span></td>
+                <td><span class="tailwind-utility">2xl:</span></td>
+                <td>≥ 1536px</td>
+                <td>Grands écrans</td>
+            </tr>
+        </table>
+        
+        <div class="note">
+            <strong>Astuce :</strong> Vous pouvez tester les breakpoints directement en redimensionnant votre navigateur. 
+            Les DevTools (F12) ont aussi un mode responsive pour simuler différents appareils.
+        </div>
+        
+        <h3>B - Exemples de Responsivité Courante</h3>
+        
+        <h4>1️⃣ Grille Responsive (Colonnes qui s'adaptent)</h4>
+        
+        <div class="code-block">
+&lt;!-- Mobile: 1 colonne<br>
+     Tablet: 2 colonnes<br>
+     Desktop: 3 colonnes<br>
+     Large desktop: 4 colonnes --&gt;<br>
+&lt;div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"&gt;<br>
+&nbsp;&nbsp;&lt;div class="bg-blue-500 text-white p-4 rounded text-center"&gt;Card 1&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;div class="bg-blue-500 text-white p-4 rounded text-center"&gt;Card 2&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;div class="bg-blue-500 text-white p-4 rounded text-center"&gt;Card 3&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;div class="bg-blue-500 text-white p-4 rounded text-center"&gt;Card 4&lt;/div&gt;<br>
+&lt;/div&gt;
+        </div>
+        
+        <div class="demo-section">
+            <strong>Résultat (grille responsive) :</strong>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+                <div style="background: #3b82f6; color: white; padding: 16px; border-radius: 6px; text-align: center;">Card 1</div>
+                <div style="background: #3b82f6; color: white; padding: 16px; border-radius: 6px; text-align: center;">Card 2</div>
+                <div style="background: #3b82f6; color: white; padding: 16px; border-radius: 6px; text-align: center;">Card 3</div>
+                <div style="background: #3b82f6; color: white; padding: 16px; border-radius: 6px; text-align: center;">Card 4</div>
+            </div>
+        </div>
+        
+        <h4>2️⃣ Taille de Texte Responsive</h4>
+        
+        <div class="code-block">
+&lt;!-- Le texte devient plus grand sur les écrans plus grands --&gt;<br>
+&lt;h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold"&gt;<br>
+&nbsp;&nbsp;Titre Responsive<br>
+&lt;/h1&gt;
+        </div>
+        
+        <div class="demo-section">
+            <strong>Résultat :</strong>
+            <h1 style="font-size: 32px; font-weight: bold; margin: 0;">Titre Responsive (redimensionnez le navigateur)</h1>
+        </div>
+        
+        <h4>3️⃣ Affichage/Masquage Conditionnel</h4>
+        
+        <div class="code-block">
+&lt;!-- Caché sur mobile, visible sur tablet et plus --&gt;<br>
+&lt;div class="hidden md:block bg-blue-500 text-white p-4"&gt;<br>
+&nbsp;&nbsp;🖥️ Visible uniquement sur desktop<br>
+&lt;/div&gt;<br>
+<br>
+&lt;!-- Visible sur mobile, caché sur desktop et plus --&gt;<br>
+&lt;div class="block md:hidden bg-green-500 text-white p-4"&gt;<br>
+&nbsp;&nbsp;📱 Visible uniquement sur mobile<br>
+&lt;/div&gt;
+        </div>
+        
+        <div class="demo-section">
+            <strong>Résultat :</strong>
+            <div style="background: #3b82f6; color: white; padding: 16px; display: none;">🖥️ Visible uniquement sur desktop</div>
+            <div style="background: #22c55e; color: white; padding: 16px;">📱 Visible uniquement sur mobile</div>
+            <p style="font-size: 12px; color: #666; margin-top: 8px;">💡 Note: Redimensionnez le navigateur pour voir le changement</p>
+        </div>
+        
+        <h4>4️⃣ Padding/Margin Responsive</h4>
+        
+        <div class="code-block">
+&lt;!-- Padding plus petit sur mobile, plus grand sur desktop --&gt;<br>
+&lt;div class="p-2 sm:p-4 md:p-6 lg:p-8 bg-yellow-200 border-2 border-yellow-500"&gt;<br>
+&nbsp;&nbsp;L'espacement intérieur augmente avec la taille de l'écran<br>
+&lt;/div&gt;
+        </div>
+        
+        <div class="demo-section">
+            <strong>Résultat :</strong>
+            <div style="padding: 16px; background: #fef08a; border: 2px solid #eab308;">
+                L'espacement intérieur augmente avec la taille de l'écran
+            </div>
+        </div>
+        
+        <h4>5️⃣ Direction Flex Responsive</h4>
+        
+        <div class="code-block">
+&lt;!-- Sur mobile: colonne<br>
+     Sur desktop: rangée --&gt;<br>
+&lt;div class="flex flex-col md:flex-row gap-4"&gt;<br>
+&nbsp;&nbsp;&lt;div class="flex-1 bg-red-500 text-white p-4 rounded"&gt;Item 1&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;div class="flex-1 bg-red-500 text-white p-4 rounded"&gt;Item 2&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;div class="flex-1 bg-red-500 text-white p-4 rounded"&gt;Item 3&lt;/div&gt;<br>
+&lt;/div&gt;
+        </div>
+        
+        <div class="demo-section">
+            <strong>Résultat :</strong>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div style="flex: 1; background: #ef4444; color: white; padding: 16px; border-radius: 6px;">Item 1</div>
+                <div style="flex: 1; background: #ef4444; color: white; padding: 16px; border-radius: 6px;">Item 2</div>
+                <div style="flex: 1; background: #ef4444; color: white; padding: 16px; border-radius: 6px;">Item 3</div>
+            </div>
+        </div>
+        
+        <h3>C - Exemple Complet : Page Produit Responsive</h3>
+        
+        <div class="code-block">
+&lt;div class="min-h-screen bg-gray-100"&gt;<br>
+&nbsp;&nbsp;&lt;!-- Navbar responsive --&gt;<br>
+&nbsp;&nbsp;&lt;nav class="bg-white shadow"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="max-w-7xl mx-auto px-4 py-4"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="flex justify-between items-center"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1 class="text-2xl font-bold"&gt;Ma Boutique&lt;/h1&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button class="md:hidden bg-blue-500 text-white px-4 py-2 rounded"&gt;Menu&lt;/button&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="hidden md:flex gap-6"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="text-gray-800 hover:text-blue-500"&gt;Accueil&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="text-gray-800 hover:text-blue-500"&gt;Produits&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="text-gray-800 hover:text-blue-500"&gt;Contact&lt;/a&gt;&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;/nav&gt;<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&lt;!-- Contenu principal responsive --&gt;<br>
+&nbsp;&nbsp;&lt;div class="max-w-7xl mx-auto px-4 py-8"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="grid grid-cols-1 md:grid-cols-4 gap-6"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Sidebar: hidden sur mobile, visible sur md+ --&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;aside class="hidden md:block"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="bg-white p-4 rounded shadow"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3 class="font-bold mb-4"&gt;Filtres&lt;/h3&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="space-y-2"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;input type="checkbox" /&gt; Catégorie 1&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;input type="checkbox" /&gt; Catégorie 2&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/aside&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Produits: span 1 colonne sur mobile, 3 colonnes sur md+ --&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="md:col-span-3"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Produit 1 --&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="bg-white rounded-lg shadow hover:shadow-lg transition"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="h-48 bg-gradient-to-br from-blue-400 to-purple-600"&gt;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="p-4"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4 class="font-bold text-lg"&gt;Produit 1&lt;/h4&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class="text-gray-600 text-sm"&gt;Description du produit&lt;/p&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="flex justify-between items-center mt-4"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="text-2xl font-bold text-blue-600"&gt;29,99€&lt;/span&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"&gt;Ajouter&lt;/button&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Repéter pour d'autres produits --&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;<br>
+&lt;/div&gt;
+        </div>
+        
+        <div class="demo-section">
+            <strong>Résultat en direct :</strong>
+            <div style="min-height: 100vh; background: #f3f4f6;">
+                <nav style="background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                    <div style="max-width: 80rem; margin: 0 auto; padding: 16px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h1 style="font-size: 24px; font-weight: bold;">Ma Boutique</h1>
+                            <ul style="display: none; gap: 24px; list-style: none;">
+                                <li><a href="#" style="color: #1f2937; text-decoration: none;">Accueil</a></li>
+                                <li><a href="#" style="color: #1f2937; text-decoration: none;">Produits</a></li>
+                                <li><a href="#" style="color: #1f2937; text-decoration: none;">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <div style="max-width: 80rem; margin: 0 auto; padding: 32px 16px;">
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 24px;">
+                        <div style="background: white; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); overflow: hidden;">
+                            <div style="height: 192px; background: linear-gradient(to bottom right, #60a5fa, #a855f7);"></div>
+                            <div style="padding: 16px;">
+                                <h4 style="font-weight: bold; font-size: 18px; margin: 0 0 8px 0;">Produit 1</h4>
+                                <p style="color: #4b5563; font-size: 14px; margin: 0;">Description du produit</p>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;">
+                                    <span style="font-size: 24px; font-weight: bold; color: #2563eb;">29,99€</span>
+                                    <button style="background: #3b82f6; color: white; padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer;">Ajouter</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h3>D - Astuce Bonus : Utiliser max-w et Containers</h3>
+        
+        <p>Pour que votre contenu ne s'étire pas trop sur les grands écrans, utilisez <span class="tailwind-utility">max-w-*</span> :</p>
+        
+        <div class="code-block">
+&lt;!-- Le contenu aura une largeur max de 80rem, centré --&gt;<br>
+&lt;div class="max-w-7xl mx-auto px-4"&gt;<br>
+&nbsp;&nbsp;&lt;!-- Contenu ici --&gt;<br>
+&lt;/div&gt;
+        </div>
+        
+        <table>
+            <tr>
+                <th>Classe</th>
+                <th>Largeur maximale</th>
+            </tr>
+            <tr>
+                <td><span class="tailwind-utility">max-w-sm</span></td>
+                <td>24rem (384px)</td>
+            </tr>
+            <tr>
+                <td><span class="tailwind-utility">max-w-md</span></td>
+                <td>28rem (448px)</td>
+            </tr>
+            <tr>
+                <td><span class="tailwind-utility">max-w-lg</span></td>
+                <td>32rem (512px)</td>
+            </tr>
+            <tr>
+                <td><span class="tailwind-utility">max-w-4xl</span></td>
+                <td>56rem (896px)</td>
+            </tr>
+            <tr>
+                <td><span class="tailwind-utility">max-w-7xl</span></td>
+                <td>80rem (1280px)</td>
+            </tr>
+        </table>
+        
+        <h3>E - Checklist pour Rendre Votre Site Responsive</h3>
+        
+        <div class="example-box">
+            <ul>
+                <li>✅ Utilisez <span class="tailwind-utility">grid-cols-1 sm:grid-cols-2 md:grid-cols-3</span> pour les grilles</li>
+                <li>✅ Testez sur mobile, tablet et desktop</li>
+                <li>✅ Utilisez <span class="tailwind-utility">hidden md:block</span> pour masquer les éléments</li>
+                <li>✅ Appliquez <span class="tailwind-utility">p-2 md:p-6</span> pour l'espacement responsive</li>
+                <li>✅ Rendez le texte responsive : <span class="tailwind-utility">text-base md:text-lg</span></li>
+                <li>✅ Testez avec les DevTools (F12 > Mode responsive)</li>
+                <li>✅ Utilisez <span class="tailwind-utility">max-w-</span> pour limiter la largeur</li>
+                <li>✅ Testez les transitions entre breakpoints</li>
+            </ul>
+        </div>
+        
+        <!-- SECTION 11: CONSEILS PRATIQUES -->
+        <h2>1️⃣1️⃣ Conseils Pratiques pour Bien Démarrer</h2>
+        
+        <ul>
+            <li><strong>Commencez simple :</strong> Utilisez les classes basiques d'abord (padding, margin, colors)</li>
+            <li><strong>Lisez la documentation :</strong> Tailwind a une excellente documentation avec des exemples</li>
+            <li><strong>Utilisez le Playground :</strong> Testez le code sur play.tailwindcss.com</li>
+            <li><strong>Mobile-first :</strong> Commencez par le design mobile, puis ajoutez des breakpoints pour plus grand</li>
+            <li><strong>Ne mémorisez pas tout :</strong> Les développeurs utilisent toujours la documentation</li>
+            <li><strong>Gardez le HTML lisible :</strong> Si votre HTML est trop chargé de classes, créez des composants</li>
+            <li><strong>Utilisez @apply pour les répétitions :</strong> Si vous répétez les mêmes classes, créez une classe CSS personnalisée</li>
+            <li><strong>Testez la responsivité :</strong> Redimensionnez toujours votre navigateur et testez sur des appareils réels</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>⚠️ Important :</strong> Tailwind CSS nécessite une étape de build (npm run dev ou npm run build). 
+            Vous ne pouvez pas l'utiliser simplement avec un lien CDN pour tous les styles - utilisez le Play CDN pour tester seulement.
+        </div>
+        
+        <!-- SECTION 11: RESSOURCES -->
+        <h2>1️⃣1️⃣ Ressources Utiles</h2>
+        
+        <ul>
+            <li>📖 <strong>Documentation officielle :</strong> https://tailwindcss.com/docs</li>
+            <li>🎮 <strong>Playground interactif :</strong> https://play.tailwindcss.com/</li>
+            <li>🎨 <strong>Palette de couleurs :</strong> https://tailwindcss.com/docs/customization/colors</li>
+            <li>📱 <strong>Configuration responsive :</strong> https://tailwindcss.com/docs/responsive-design</li>
+        </ul>
+        
+        <div class="note">
+            <strong>Prochaines étapes :</strong> Une fois que vous maîtrisez les bases, explorez :
+            <ul>
+                <li>Les composants réutilisables (@apply)</li>
+                <li>La personnalisation (tailwind.config.js)</li>
+                <li>Les plugins Tailwind</li>
+                <li>Les animations Tailwind</li>
+            </ul>
+        </div>
+        
+    </div>
+</body>
+</html>

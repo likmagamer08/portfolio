@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours Tween.js - Les Bases</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/r14/Tween.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        main {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+        }
+
+        .section p,
+        .section li {
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        .section ul {
+            margin-left: 20px;
+        }
+
+        .code-block {
+            background: #f5f5f5;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            color: #d63384;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+        }
+
+        .demo-box {
+            background: #f9f9f9;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .demo-element {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            margin: 10px;
+            position: relative;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #764ba2;
+        }
+
+        .explanation {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .explanation strong {
+            color: #1976D2;
+        }
+
+        .tip {
+            background: #f0f4c3;
+            border-left: 4px solid #fbc02d;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .tip strong {
+            color: #f57f17;
+        }
+
+        footer {
+            background: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+
+        h3 {
+            color: #764ba2;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #ddd;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Cours Tween.js</h1>
+            <p>Apprendre les animations avec Tween.js - Niveau Débutant</p>
+        </header>
+
+        <main>
+            <!-- INTRODUCTION -->
+            <section class="section">
+                <h2>🎯 Introduction à Tween.js</h2>
+                <p>
+                    Bienvenue dans ce cours sur <strong>Tween.js</strong> ! C'est une excellente librairie JavaScript
+                    pour créer des <strong>animations fluides</strong> et <strong>naturelles</strong>.
+                </p>
+                <p>
+                    <strong>Qu'est-ce qu'un "tween" ?</strong> Le mot "tween" vient de "between" (entre).
+                    Une animation tween calcule automatiquement les valeurs intermédiaires entre un point de départ
+                    et un point d'arrivée pour créer une animation fluide.
+                </p>
+                <div class="explanation">
+                    <strong>Exemple simple :</strong> Si vous voulez déplacer une boîte de X=0 à X=500 en 1 seconde,
+                    Tween.js calculera automatiquement les positions intermédiaires (0, 50, 100, 150... 500)
+                    pour créer une animation fluide.
+                </div>
+            </section>
+
+            <!-- CONCEPTS DE BASE -->
+            <section class="section">
+                <h2>📖 Les Concepts de Base</h2>
+
+                <h3>1️⃣ Qu'est-ce qu'une Animation ?</h3>
+                <p>
+                    Une animation est le changement progressif des propriétés d'un élément ou d'un objet
+                    sur une période de temps.
+                </p>
+                <ul>
+                    <li><strong>Point de départ :</strong> Les valeurs initiales (ex: X=0)</li>
+                    <li><strong>Point d'arrivée :</strong> Les valeurs finales (ex: X=500)</li>
+                    <li><strong>Durée :</strong> Le temps pour passer du départ à l'arrivée (en millisecondes)</li>
+                    <li><strong>Easing :</strong> La façon dont la valeur change (lent-vite, constant, etc.)</li>
+                </ul>
+
+                <h3>2️⃣ Structure d'une Animation Tween</h3>
+                <p>Toute animation avec Tween.js suit ce processus :</p>
+                <div class="code-block">
+                    <code>
+// Étape 1 : Créer un objet avec les valeurs initiales<br>
+const objet = { x: 0, y: 0 };<br>
+<br>
+// Étape 2 : Créer un Tween (animation)<br>
+new TWEEN.Tween(objet)<br>
+&nbsp;&nbsp;.to({ x: 500, y: 300 }, 2000)  // Aller vers x:500, y:300 en 2000ms<br>
+&nbsp;&nbsp;.onUpdate(() => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;console.log('X actuel:', objet.x);<br>
+&nbsp;&nbsp;})<br>
+&nbsp;&nbsp;.start(); // Commencer l'animation<br>
+<br>
+// Étape 3 : Mettre à jour l'animation à chaque image<br>
+function animate() {<br>
+&nbsp;&nbsp;TWEEN.update();<br>
+&nbsp;&nbsp;requestAnimationFrame(animate);<br>
+}
+                    </code>
+                </div>
+
+                <h3>3️⃣ Propriétés Importantes</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Propriété</th>
+                        <th>Explication</th>
+                        <th>Exemple</th>
+                    </tr>
+                    <tr>
+                        <td><code>.to()</code></td>
+                        <td>Définit les valeurs finales</td>
+                        <td><code>.to({ x: 100 }, 1000)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>.duration()</code></td>
+                        <td>Durée en millisecondes</td>
+                        <td><code>.duration(2000)</code> = 2 secondes</td>
+                    </tr>
+                    <tr>
+                        <td><code>.onUpdate()</code></td>
+                        <td>Fonction appelée à chaque mise à jour</td>
+                        <td>Mettre à jour l'affichage</td>
+                    </tr>
+                    <tr>
+                        <td><code>.onComplete()</code></td>
+                        <td>Fonction appelée à la fin</td>
+                        <td>Déclencher une action</td>
+                    </tr>
+                    <tr>
+                        <td><code>.start()</code></td>
+                        <td>Démarrer l'animation</td>
+                        <td>Obligatoire !</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- DEMO 1 : ANIMATION SIMPLE -->
+            <section class="section">
+                <h2>🎬 Démo 1 : Animation Simple</h2>
+                <p>Cliquez sur le bouton pour voir votre première animation !</p>
+
+                <div class="demo-box">
+                    <div id="demo1-element" class="demo-element"></div>
+                    <div style="margin-top: 20px;">
+                        <button onclick="demoSimple()">▶️ Démarrer l'animation</button>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <strong>Qu'est-ce qui se passe :</strong> Le carré se déplace doucement vers la droite
+                    pendant 2 secondes. Tween.js calcule automatiquement chaque position intermédiaire.
+                </div>
+
+                <h3>Code Source :</h3>
+                <div class="code-block">
+                    <code>
+function demoSimple() {<br>
+&nbsp;&nbsp;// 1. Créer l'objet avec les positions<br>
+&nbsp;&nbsp;const position = { x: 0 };<br>
+<br>
+&nbsp;&nbsp;// 2. Créer l'animation<br>
+&nbsp;&nbsp;new TWEEN.Tween(position)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.to({ x: 300 }, 2000)  // Aller à x=300 en 2 secondes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.onUpdate(() => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const element = document.getElementById('demo1-element');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;element.style.transform = `translateX(\${position.x}px)`;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;})<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.start();<br>
+<br>
+&nbsp;&nbsp;// 3. Mettre à jour l'animation<br>
+&nbsp;&nbsp;animate();<br>
+}
+                    </code>
+                </div>
+            </section>
+
+            <!-- EASING FUNCTIONS -->
+            <section class="section">
+                <h2>⚙️ Les Easing Functions (Fonctions d'Accélération)</h2>
+
+                <p>
+                    Les "easing functions" contrôlent la <strong>vitesse</strong> du changement lors de l'animation.
+                    Sans easing, le mouvement est linéaire (toujours à la même vitesse). Avec easing,
+                    vous pouvez créer des mouvements plus naturels.
+                </p>
+
+                <h3>Types d'Easing Courants :</h3>
+                <ul>
+                    <li><strong>Linear :</strong> Mouvement constant (pas d'accélération)</li>
+                    <li><strong>Quadratic :</strong> Accélération plus lente au début</li>
+                    <li><strong>Cubic :</strong> Accélération plus prononcée</li>
+                    <li><strong>Elastic :</strong> Effet "rebond" élastique</li>
+                    <li><strong>Back :</strong> Recule un peu avant d'avancer</li>
+                    <li><strong>Bounce :</strong> Effet de rebond comme une balle</li>
+                </ul>
+
+                <h3>Comment les Utiliser :</h3>
+                <div class="code-block">
+                    <code>
+new TWEEN.Tween(objet)<br>
+&nbsp;&nbsp;.to({ x: 500 }, 2000)<br>
+&nbsp;&nbsp;.easing(TWEEN.Easing.Quadratic.InOut)  // Utiliser un easing<br>
+&nbsp;&nbsp;.start();
+                    </code>
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Conseil :</strong> Expérimentez avec différents easings !
+                    Quadratic.InOut et Cubic.InOut sont très populaires pour les animations naturelles.
+                </div>
+            </section>
+
+            <!-- DEMO 2 : COMPARAISON EASING -->
+            <section class="section">
+                <h2>🎬 Démo 2 : Comparer les Easing Functions</h2>
+                <p>Voyez comment différents easings créent des mouvements différents :</p>
+
+                <div class="demo-box">
+                    <div style="margin-bottom: 20px;">
+                        <strong>Linear (constant)</strong>
+                        <div class="progress-bar">
+                            <div id="progress-linear" class="progress-fill" style="width: 0%;">0%</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <strong>Quadratic.InOut (accélération)</strong>
+                        <div class="progress-bar">
+                            <div id="progress-quad" class="progress-fill" style="width: 0%;">0%</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <strong>Bounce (rebond)</strong>
+                        <div class="progress-bar">
+                            <div id="progress-bounce" class="progress-fill" style="width: 0%;">0%</div>
+                        </div>
+                    </div>
+
+                    <button onclick="demoEasing()">🔄 Comparer les Easings</button>
+                </div>
+
+                <div class="explanation">
+                    <strong>Observation :</strong> Linear avance toujours à la même vitesse. Quadratic.InOut
+                    démarre lentement, puis rapide, puis ralentit. Bounce rebondit comme une balle.
+                </div>
+            </section>
+
+            <!-- CALLBACKS -->
+            <section class="section">
+                <h2>📞 Les Callbacks (Fonctions de Rappel)</h2>
+
+                <p>
+                    Les callbacks sont des fonctions que vous pouvez exécuter à des moments spécifiques
+                    de l'animation. Cela vous permet de réagir aux événements de l'animation.
+                </p>
+
+                <h3>Callbacks Disponibles :</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Callback</th>
+                        <th>Quand ?</th>
+                        <th>Utilisation</th>
+                    </tr>
+                    <tr>
+                        <td><code>.onStart()</code></td>
+                        <td>Au démarrage de l'animation</td>
+                        <td>Afficher un message, désactiver des boutons</td>
+                    </tr>
+                    <tr>
+                        <td><code>.onUpdate()</code></td>
+                        <td>À chaque mise à jour (souvent 60x par seconde)</td>
+                        <td>Mettre à jour l'affichage, positionner l'élément</td>
+                    </tr>
+                    <tr>
+                        <td><code>.onComplete()</code></td>
+                        <td>Quand l'animation est terminée</td>
+                        <td>Déclencher une autre animation, réactiver les boutons</td>
+                    </tr>
+                    <tr>
+                        <td><code>.onStop()</code></td>
+                        <td>Quand l'animation est arrêtée</td>
+                        <td>Nettoyer, restaurer l'état</td>
+                    </tr>
+                </table>
+
+                <h3>Exemple Complet :</h3>
+                <div class="code-block">
+                    <code>
+new TWEEN.Tween(objet)<br>
+&nbsp;&nbsp;.to({ x: 500 }, 2000)<br>
+&nbsp;&nbsp;.onStart(() => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;console.log('Animation commencée');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bouton.disabled = true;  // Désactiver le bouton<br>
+&nbsp;&nbsp;})<br>
+&nbsp;&nbsp;.onUpdate(() => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;element.style.left = objet.x + 'px';<br>
+&nbsp;&nbsp;})<br>
+&nbsp;&nbsp;.onComplete(() => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;console.log('Animation terminée !');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bouton.disabled = false;  // Réactiver le bouton<br>
+&nbsp;&nbsp;})<br>
+&nbsp;&nbsp;.start();
+                    </code>
+                </div>
+            </section>
+
+            <!-- DEMO 3 : CALLBACKS -->
+            <section class="section">
+                <h2>🎬 Démo 3 : Voir les Callbacks en Action</h2>
+
+                <div class="demo-box">
+                    <div id="demo3-element" class="demo-element"></div>
+                    <div style="margin-top: 20px;">
+                        <button id="demo3-btn" onclick="demoCallbacks()">🎬 Lancer avec Callbacks</button>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <p id="demo3-message" style="font-size: 1.1em; color: #764ba2;"></p>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <strong>Regardez :</strong> Le message change au démarrage, pendant l'animation, et à la fin.
+                    Le bouton est également désactivé pendant l'animation.
+                </div>
+            </section>
+
+            <!-- CHAINING -->
+            <section class="section">
+                <h2>🔗 Chaîner les Animations</h2>
+
+                <p>
+                    Vous pouvez chaîner plusieurs animations pour qu'elles se suivent.
+                    Cela permet de créer des séquences complexes.
+                </p>
+
+                <h3>Deux Façons de Chaîner :</h3>
+
+                <h4>1. Avec .chain() :</h4>
+                <div class="code-block">
+                    <code>
+const tween1 = new TWEEN.Tween(objet)<br>
+&nbsp;&nbsp;.to({ x: 100 }, 1000);<br>
+<br>
+const tween2 = new TWEEN.Tween(objet)<br>
+&nbsp;&nbsp;.to({ y: 100 }, 1000);<br>
+<br>
+tween1.chain(tween2);  // tween2 démarre quand tween1 finit<br>
+tween1.start();
+                    </code>
+                </div>
+
+                <h4>2. Avec .onComplete() :</h4>
+                <div class="code-block">
+                    <code>
+new TWEEN.Tween(objet)<br>
+&nbsp;&nbsp;.to({ x: 100 }, 1000)<br>
+&nbsp;&nbsp;.onComplete(() => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;// Démarrer la prochaine animation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;new TWEEN.Tween(objet)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.to({ y: 100 }, 1000)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.start();<br>
+&nbsp;&nbsp;})<br>
+&nbsp;&nbsp;.start();
+                    </code>
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Conseil :</strong> .chain() est généralement plus simple et plus propre pour les
+                    séquences.
+                </div>
+            </section>
+
+            <!-- DEMO 4 : CHAINING -->
+            <section class="section">
+                <h2>🎬 Démo 4 : Animations Chaînées</h2>
+
+                <div class="demo-box">
+                    <div id="demo4-element" class="demo-element"></div>
+                    <div style="margin-top: 20px;">
+                        <button onclick="demoChaining()">➡️ Voir la séquence</button>
+                    </div>
+                    <p id="demo4-message" style="margin-top: 10px; color: #764ba2;"></p>
+                </div>
+
+                <div class="explanation">
+                    <strong>Qu'est-ce qui se passe :</strong> Le carré bouge à droite, puis vers le bas,
+                    puis à gauche, et enfin vers le haut. Chaque mouvement attend que le précédent finisse.
+                </div>
+            </section>
+
+            <!-- BONNES PRATIQUES -->
+            <section class="section">
+                <h2>✅ Bonnes Pratiques et Conseils</h2>
+
+                <h3>1. Toujours Appeler TWEEN.update() :</h3>
+                <div class="code-block">
+                    <code>
+function animate() {<br>
+&nbsp;&nbsp;TWEEN.update();  // ESSENTIEL !<br>
+&nbsp;&nbsp;requestAnimationFrame(animate);<br>
+}<br>
+animate();
+                    </code>
+                </div>
+
+                <h3>2. Choisir les Bonnes Durées :</h3>
+                <ul>
+                    <li>💨 <strong>100-300ms :</strong> Animations rapides (boutons, petits éléments)</li>
+                    <li>⏱️ <strong>500-1000ms :</strong> Animations normales (la plupart des cas)</li>
+                    <li>🎞️ <strong>1500ms+:</strong> Animations lentes (transitions majeures)</li>
+                </ul>
+
+                <h3>3. Utiliser des Easings Naturels :</h3>
+                <ul>
+                    <li><code>Quadratic.InOut</code> - Usage général</li>
+                    <li><code>Cubic.InOut</code> - Animations élégantes</li>
+                    <li><code>Elastic.Out</code> - Effets ludiques</li>
+                    <li><code>Bounce.Out</code> - Effets amusants</li>
+                </ul>
+
+                <h3>4. Vérifier que requestAnimationFrame() s'exécute :</h3>
+                <div class="code-block">
+                    <code>
+// Au chargement de la page<br>
+function animate() {<br>
+&nbsp;&nbsp;TWEEN.update();<br>
+&nbsp;&nbsp;requestAnimationFrame(animate);<br>
+}<br>
+animate();  // C'est important !
+                    </code>
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Conseil :</strong> Les animations lentes rendent l'interface plus élégante mais
+                    ne ralentissent pas l'utilisateur. Trouvez l'équilibre !
+                </div>
+            </section>
+
+            <!-- RÉSUMÉ -->
+            <section class="section">
+                <h2>📋 Résumé - Ce que Vous Avez Appris</h2>
+
+                <h3>✨ Les Concepts Clés :</h3>
+                <ol>
+                    <li><strong>Tween :</strong> Animation entre deux états</li>
+                    <li><strong>.to() :</strong> Définit les valeurs finales</li>
+                    <li><strong>.duration() / paramètre :</strong> Durée en ms</li>
+                    <li><strong>.easing() :</strong> Contrôle la vitesse</li>
+                    <li><strong>.onUpdate() :</strong> Mettre à jour l'affichage</li>
+                    <li><strong>.onComplete() :</strong> Fonction de fin</li>
+                    <li><strong>.start() :</strong> Démarrer l'animation</li>
+                    <li><strong>.chain() :</strong> Chaîner les animations</li>
+                    <li><strong>TWEEN.update() :</strong> Mettre à jour chaque frame</li>
+                    <li><strong>requestAnimationFrame :</strong> Boucle d'animation</li>
+                </ol>
+
+                <h3>🚀 Prochaines Étapes :</h3>
+                <ul>
+                    <li>Essayez d'animer d'autres propriétés (rotation, couleur, opacité)</li>
+                    <li>Explorez tous les types d'easing disponibles</li>
+                    <li>Créez des animations complexes en chaînant plusieurs tweens</li>
+                    <li>Animez les éléments DOM réels de votre page</li>
+                    <li>Visitez la documentation officielle : tweenjs.github.io</li>
+                </ul>
+            </section>
+
+            <!-- AIDE -->
+            <section class="section">
+                <h2>❓ Questions Fréquentes</h2>
+
+                <h3>Q: Pourquoi mon animation ne marche pas ?</h3>
+                <p><strong>R:</strong> Vérifiez que :</p>
+                <ul>
+                    <li>✅ <code>.start()</code> est appelé</li>
+                    <li>✅ <code>TWEEN.update()</code> s'exécute dans une boucle</li>
+                    <li>✅ Vous avez inclus la librairie Tween.js</li>
+                    <li>✅ <code>onUpdate()</code> met à jour l'élément</li>
+                </ul>
+
+                <h3>Q: Comment animer une couleur ?</h3>
+                <p><strong>R:</strong> Vous devez animer les composants RGB séparément :</p>
+                <div class="code-block">
+                    <code>
+const couleur = { r: 255, g: 0, b: 0 };<br>
+new TWEEN.Tween(couleur)<br>
+&nbsp;&nbsp;.to({ r: 0, g: 255, b: 0 }, 1000)<br>
+&nbsp;&nbsp;.onUpdate(() => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;const rgb = \`rgb(\${couleur.r}, \${couleur.g}, \${couleur.b})\`;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;element.style.background = rgb;<br>
+&nbsp;&nbsp;})<br>
+&nbsp;&nbsp;.start();
+                    </code>
+                </div>
+
+                <h3>Q: Quelle est la différence entre duration() et le deuxième paramètre ?</h3>
+                <p><strong>R:</strong> Ils font la même chose ! Ces deux syntaxes sont équivalentes :</p>
+                <div class="code-block">
+                    <code>
+// Syntaxe 1 :<br>
+.to({ x: 100 }, 1000)<br>
+<br>
+// Syntaxe 2 :<br>
+.to({ x: 100 }).duration(1000)
+                    </code>
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <p>📚 Cours Tween.js - Débutant | Créé pour apprendre les animations JavaScript</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">
+                Librairie officielle : <a href="https://tweenjs.github.io/" target="_blank"
+                    style="color: #667eea;">tweenjs.github.io</a>
+            </p>
+            <div style="margin-top: 20px;">
+                <a href="cours_tween_avance.html"
+                    style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; font-size: 1.1em; transition: transform 0.3s, box-shadow 0.3s;"
+                    onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)';"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                    🚀 Passer au Cours Avancé →
+                </a>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@tweenjs/tween.js@18.6.4/dist/tween.umd.min.js"></script>
+    <script>
+        // ====== FONCTION PRINCIPALE D'ANIMATION ======
+        // Cette fonction DOIT toujours s'exécuter pour que les animations fonctionnent
+        function animate() {
+            TWEEN.update();
+            requestAnimationFrame(animate);
+        }
+        animate();  // Démarrer la boucle d'animation
+
+        // ====== DÉMO 1 : ANIMATION SIMPLE ======
+        function demoSimple() {
+            // Réinitialiser la position
+            const element = document.getElementById('demo1-element');
+            element.style.transform = 'translateX(0px)';
+
+            const position = { x: 0 };
+
+            new TWEEN.Tween(position)
+                .to({ x: 300 }, 2000)
+                .easing(TWEEN.Easing.Quadratic.InOut)
+                .onUpdate(() => {
+                    element.style.transform = `translateX(${position.x}px)`;
+                })
+                .start();
+        }
+
+        // ====== DÉMO 2 : COMPARAISON EASING ======
+        function demoEasing() {
+            const progressLinear = { value: 0 };
+            const progressQuad = { value: 0 };
+            const progressBounce = { value: 0 };
+
+            // Animation 1 : Linear
+            new TWEEN.Tween(progressLinear)
+                .to({ value: 100 }, 3000)
+                .easing(TWEEN.Easing.Linear.None)
+                .onUpdate(() => {
+                    document.getElementById('progress-linear').style.width = progressLinear.value + '%';
+                    document.getElementById('progress-linear').textContent = Math.round(progressLinear.value) + '%';
+                })
+                .start();
+
+            // Animation 2 : Quadratic
+            new TWEEN.Tween(progressQuad)
+                .to({ value: 100 }, 3000)
+                .easing(TWEEN.Easing.Quadratic.InOut)
+                .onUpdate(() => {
+                    document.getElementById('progress-quad').style.width = progressQuad.value + '%';
+                    document.getElementById('progress-quad').textContent = Math.round(progressQuad.value) + '%';
+                })
+                .start();
+
+            // Animation 3 : Bounce
+            new TWEEN.Tween(progressBounce)
+                .to({ value: 100 }, 3000)
+                .easing(TWEEN.Easing.Bounce.Out)
+                .onUpdate(() => {
+                    document.getElementById('progress-bounce').style.width = progressBounce.value + '%';
+                    document.getElementById('progress-bounce').textContent = Math.round(progressBounce.value) + '%';
+                })
+                .start();
+        }
+
+        // ====== DÉMO 3 : CALLBACKS ======
+        function demoCallbacks() {
+            const element = document.getElementById('demo3-element');
+            const message = document.getElementById('demo3-message');
+            const button = document.getElementById('demo3-btn');
+
+            // Réinitialiser
+            element.style.transform = 'translateX(0px)';
+            button.disabled = true;
+
+            const position = { x: 0 };
+
+            new TWEEN.Tween(position)
+                .to({ x: 300 }, 2000)
+                .easing(TWEEN.Easing.Quadratic.InOut)
+                .onStart(() => {
+                    message.textContent = '🚀 Animation démarrée !';
+                    message.style.color = '#d63384';
+                })
+                .onUpdate(() => {
+                    element.style.transform = `translateX(${position.x}px)`;
+                    message.textContent = `📍 Position: ${Math.round(position.x)}px`;
+                })
+                .onComplete(() => {
+                    message.textContent = '✅ Animation terminée !';
+                    message.style.color = '#28a745';
+                    button.disabled = false;
+                })
+                .start();
+        }
+
+        // ====== DÉMO 4 : CHAINING ======
+        function demoChaining() {
+            const element = document.getElementById('demo4-element');
+            const message = document.getElementById('demo4-message');
+
+            // Réinitialiser
+            element.style.transform = 'translateX(0px) translateY(0px)';
+            message.textContent = '';
+
+            const position = { x: 0, y: 0 };
+
+            // Animation 1 : Vers la droite
+            const tween1 = new TWEEN.Tween(position)
+                .to({ x: 200 }, 1000)
+                .easing(TWEEN.Easing.Quadratic.InOut)
+                .onUpdate(() => {
+                    element.style.transform = `translateX(${position.x}px) translateY(${position.y}px)`;
+                    message.textContent = '➡️ En train de bouger à droite...';
+                })
+                .onComplete(() => {
+                    message.textContent = '✅ Vers la droite - OK';
+                });
+
+            // Animation 2 : Vers le bas
+            const tween2 = new TWEEN.Tween(position)
+                .to({ y: 150 }, 1000)
+                .easing(TWEEN.Easing.Quadratic.InOut)
+                .onUpdate(() => {
+                    element.style.transform = `translateX(${position.x}px) translateY(${position.y}px)`;
+                    message.textContent = '⬇️ En train de bouger vers le bas...';
+                })
+                .onComplete(() => {
+                    message.textContent = '✅ Vers le bas - OK';
+                });
+
+            // Animation 3 : Vers la gauche
+            const tween3 = new TWEEN.Tween(position)
+                .to({ x: 0 }, 1000)
+                .easing(TWEEN.Easing.Quadratic.InOut)
+                .onUpdate(() => {
+                    element.style.transform = `translateX(${position.x}px) translateY(${position.y}px)`;
+                    message.textContent = '⬅️ En train de bouger à gauche...';
+                })
+                .onComplete(() => {
+                    message.textContent = '✅ Vers la gauche - OK';
+                });
+
+            // Animation 4 : Vers le haut
+            const tween4 = new TWEEN.Tween(position)
+                .to({ y: 0 }, 1000)
+                .easing(TWEEN.Easing.Quadratic.InOut)
+                .onUpdate(() => {
+                    element.style.transform = `translateX(${position.x}px) translateY(${position.y}px)`;
+                    message.textContent = '⬆️ En train de bouger vers le haut...';
+                })
+                .onComplete(() => {
+                    message.textContent = '✅ Séquence complète - Bravo !';
+                });
+
+            // Chaîner : tween1 -> tween2 -> tween3 -> tween4
+            tween1.chain(tween2);
+            tween2.chain(tween3);
+            tween3.chain(tween4);
+
+            // Démarrer
+            tween1.start();
+        }
+    </script>
+</body>
+
+</html>
