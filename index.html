@@ -1,469 +1,211 @@
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maquette 1</title>
-<style>
-    *{
-        margin: 0;
-        padding: 0;
-    }
-    body{
-        background-color: rgb(207, 226, 232);
-    }
-/* partie menu */
-    .menu{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        padding: 25px 20px;
-        background-color: whitesmoke;
-        box-shadow: 0 5px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .menu .logo img{
-        width: 70px;
-        height: auto;
-    }
-
-    .menu ul{
-        list-style: none;
-        background-color: rgb(80, 80, 189);
-        padding: 10px;
-    }
-
-    .menu ul li{
-        display: inline-block;
-        margin: 0 10px;
-        font-size: 18px;
-    }
-
-    .menu ul li a{
-        text-decoration: none;
-        color: white;
-    }
-
-    .btn button{
-        margin: 0 5px;
-        border: none;
-        font-size: 20px;
-        color: rgb(104, 104, 240);
-        cursor: pointer;
-    }
-/* partie hero */
-    .hero{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        margin-top: 50px;
-    }
-
-    .hero .para{
-        width: 300px;
-        font-size: 25px;
-        font-family: serif;
-    }
-/* partie bas_hero */
-    .bas_hero{
-        text-align: center;
-        margin-top: 60px;
-        padding: 35px 0;
-    }
-    .bas_hero button{
-        padding: 10px 20px;
-        font-size: 20px;
-        border: none;
-        background-color: rgb(80, 80, 189);
-        color: white;
-        cursor: pointer;
-    }
-
-    .bas_hero select{
-        margin-left: 20px;
-        padding: 10px 20px;
-        font-size: 18px;
-        border: none;
-        cursor: pointer;
-    }
-/* partie parba */
-    .parba{
-        width: 100%;
-        height: auto;
-        text-align: center;
-        background-color: rgb(91, 91, 155);
-        color: white;
-        padding: 80px 30px;
-        box-sizing: border-box;
-    }
-
-    .parba h1{
-        font-size: 40px;
-        margin-bottom: 20px;
-        font-family: sans-serif;
-    }
-    .parba p{
-        font-size: 20px;
-        line-height: 1.2;
-        font-family: serif;
-    }
-/* partie trait */
-    .trait{
-        width: 200px;
-        height: 8px;
-        background-color: rgb(80, 80, 189);
-        margin: 50px auto;
-        border-radius: 5px;
-    }
-
-    #titre2{
-        text-align: center;
-        font-size: 45px;
-        font-family: sans-serif;
-        color: rgb(86, 86, 181);
-    }
-/* partie trois */
-    .trois{
-        margin-top: 50px;
-        width: 80%;
-        padding: 100px 0;
-        background-color: lightblue;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .lesimages{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        padding: 40px 0;
-    }
-    .trois img{
-        width: 150px;
-        height: 150px;
-    }
-
-    .suiv{
-        text-decoration: none;
-    }
-/* partie confiance */
-    .confiance{
-        text-align: center;
-        margin-top: 80px;
-        padding: 50px 0;
-    }
-    .confiance h1{
-        font-size: 40px;
-        font-family: sans-serif;
-        color: rgb(86, 86, 181);
-    }
-    .temoignage{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        margin-top: 150px;
-    }
-    .fieldset1{
-        border: 1px solid black;
-        width: 300px;
-        height: auto;
-        background-color: white;
-    }
-    .fieldset2{
-        border: 1px solid black;
-        width: 300px;
-        height: auto;
-        background-color: white;
-    }
-/* partie trait 1 */
-    .trait2{
-        width: 200px;
-        height: 8px;
-        background-color: rgb(80, 80, 189);
-        margin: 50px auto;
-        border-radius: 5px;
-    }
-    #titre2{
-        text-align: center;
-        font-size: 45px;
-        font-family: sans-serif;
-        color: rgb(86, 86, 181);
-    }
-/* partie form */
-    .form{
-        width: 70%;
-        height: auto;
-        margin: 40px auto;
-        background-color: rgb(86, 86, 181);;
-        color: white;
-        padding: 80px 30px;
-        box-sizing: border-box;
-    }
-    .form label{
-        font-size: 20px;
-    }
-    .form input, .form textarea{
-        width: 100%;
-        padding: 10px;
-        margin-top: 10px;
-        margin-bottom: 20px;
-        border: none;
-        font-size: 18px;
-    }
-/* partie finale */
-    .footer{
-        background-color: black;
-        padding: 50px 0;
-    }
-    .primary{
-        padding: 20px;
-        display: flex;
-        justify-content: space-around;
-    }
-    .logoetpara{
-        margin-left: 20px;
-    }
-    .logoetpara p{
-        color: white;
-        width: 45%;
-        font-size: 20px;
-    }
-
-    .propos a{
-        text-decoration: none;
-        color: white;
-        font-size: 20px;
-    }
-
-    .propos p{
-        width: 45%;
-        color: white;
-        font-size: 20px;
-    }
-
-    .reseau{
-        text-align: center;
-        display: block;
-        background-color: aliceblue;
-        width: 90px;
-        height: 90px;
-        border-radius: 5px;
-    }
-
-    .reseau img{
-        width: 10px;
-        height: 10px;
-        padding: 5px;
-    }
-/* reseau 1 */
-    .finale{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 50px;
-    }
-    .reseau1{
-        background-color: aliceblue;
-        width: 100px;
-        height: auto;
-        border-radius: 5px;
-    }
-
-    .reseau1 img{
-        width: 10px;
-        height: 10px;
-        padding: 5px;
-    }
-/* partie responsive */
-/* menu */
-    @media screen and (max-width: 768px){
-        .menu .logo img{
-        width: 30px;
-        height: auto;
-        }
-        .menu ul li{
-            display: block;
-            margin: 10px 0;
-            font-size: 16px;   
-        }
-        .hero{
-            flex-direction: column;
-        }
-        .lesimages{
-            flex-direction: column;
-        }
-        .temoignage{
-            flex-direction: column;
-        }
-/* footer para */
-        .primary{
-            display: block;
-            text-align: center;
-        }
-
-        .reseau{
-            display: none;
-        }
-        .logoetpara p, .propos p{
-            text-align: center;
-            width: 100%;
-            padding: 10px 0;
-        }
-
-    }
-</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="src/output.css">
+    <title>Portfolio</title>
 </head>
-<body>
-    <div class="menu">
-        <div class="logo">
-            <img src="images/ParBa.png"  alt="Logo">
-        </div>
-        <ul>
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#">A propos</a></li>
-            <li><a href="#">Partenaire</a></li>
-            <li><a href="#">Témoignage</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-        <div class="btn">
-            <button type="submit">Connexion</button>
-            <button type="submit">Inscription</button>
-        </div>
-    </div>
-    <div class="hero">
-        <div class="para">
-           <h3>Votre assistance !</h3>
-           <h1 style="color: white">ParBa</h1>
-              <p>La gestion des remplacements 
-               est devenue un enjeu structurant 
-               pour les établissements 
-               sanitaires et médico-sociaux.</p>
-        </div>
-        <div class="image">
-            <img src="images/Tech Life Remote Life.png" style="width: 350px; height: 400px" alt="Hero Image">
-        </div>
-    </div>
-    <div class="bas_hero">
-        <button type="button">Commencer ✅</button>
-        <select name="options" id="options">
-            <option value="">Mon reseau</option>
-            <option value=""></option>
-            <option value=""></option>
-        </select>
-    </div>
-    <div class="parba">
-        <h1>ParBa</h1>
-        <p>La gestion des remplacements est devenue un enjeu structurant 
-            pour les établissements sanitaires et médico-sociaux.
-        </p><br><br>
-        <p>Face à l’absentéisme et ou l’accroissement temporaire d’activité imprévisible dans le temps, la gestion 
-            des remplacements est devenue un enjeu structurant pour les établissements sanitaires et 
-            médico-sociaux. Les outils actuels sont chronophages et peu efficients. Parba propose une solution 
-            digitale simple et efficace, adaptée aux besoins de toutes les structures. 
-            ParBa a été pensé pour révolutionner la gestion des ressources humaines dans la santé. Cette solution 
-            de pilotage des absences et des remplacements de personnel, 100% en ligne permet aux 
-            établissements sanitaires et médico-sociaux de gérer leur personnel (agents, salariés et vacataires).
-        </p>
-    </div>
-    <div class="trait"></div>
-    <h2 id="titre2">Nos partenaires</h2>
-    <div class="trois">
-        <div class="lesimages">
-        <div class="precedent" style="cursor: pointer"><a href="" class="suiv">⏮️</a></div>
-           <img src="images/BOOSTER LOGO-2.png" alt="">
-           <img src="images/BOOSTER LOGO.png" alt="">
-           <img src="https://media.licdn.com/dms/image/v2/C4D0BAQEnbbawBKjjgg/company-logo_200_200/company-logo_200_200/0/1630523254081?e=2147483647&v=beta&t=WahFYoJ0KtGuWBPDCj62L2W4BzcZY3rQF1mlt6BGPvw" alt="">
-        <div class="suivant" style="cursor: pointer"><a href="" class="suiv">⏭️</a></div>
-        </div>
-    </div>
-    <div class="confiance">
-        <h1>Ils nous ont fait confiance</h1>
-        <div class="temoignage">
-            <div class="precedent" style="cursor: pointer"><a href="" class="suiv">⏮️</a></div>
-            <div class="fieldset1">
-                  <legend>
-                    <img src="images/Ellipse 1.png" style="margin-top: -70px" alt="Témoignage 1">
-                  </legend>
-                 <h1 style="font-size: 20px;">Adams Smith</h1>
-                  <p style="font-size: 20px;">General manager</p>
-                    <p style="padding: 40px; font-size: 20px;">
-                        Lorem ipsum dolor sit amet, 
-                        consectetur adipiscing elit. 
-                        Aenean id in posuere id leo, 
-                        auctor aliquam feugiat 
-                        fermentum. Aliquam integer 
-                        ullamcorper tortor ac quis 
-                        tortor. Pulvinar nisl sed.
-                    </p>
-            </div>
 
-            <div class="fieldset2">
-                  <legend>
-                    <img src="images/Ellipse 2.png" style="margin-top: -70px" alt="Témoignage 1">
-                  </legend>
-                 <h1 style="font-size: 20px;">Juliette Faye</h1>
-                  <p style="font-size: 20px;">Self Care</p>
-                    <p style="padding: 40px; font-size: 20px;">
-                        Lorem ipsum dolor sit amet, 
-                        consectetur adipiscing elit. 
-                        Aenean id in posuere id leo, 
-                        auctor aliquam feugiat 
-                        fermentum. Aliquam integer 
-                        ullamcorper tortor ac quis 
-                        tortor. Pulvinar nisl sed.
-                    </p>
+<body class="bg-black">
+    <!-- Le menu -->
+    <nav class="text-white">
+        <div class="flex justify-between items-center px-5 h-15">
+            <div>
+                <h1>MOUSSA NDOYE</h1>
             </div>
-            <div class="suivant" style="cursor: pointer"><a href="" class="suiv">⏭️</a></div>
+            <ul class="hidden mr-10 gap-8 list-none md:flex">
+                <li><a href="">Projets</a></li>
+                <li><a href="">À propos</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+            <button class="md:hidden text-white text-3xl p-2">☰</button>
         </div>
-    </div>
-    <div class="trait2"></div>
-    <h1 id="titre2">Contact</h1>
-    <div class="form">
-        <form action="" method="post">
-            <label for="fname">Nom</label><br>
-            <input type="text" id="fname" name="fname"><br>
-            <label for="lname">structure</label><br>
-            <input type="text" id="lname" name="lname"><br>
-            <label for="email">Adresse email</label><br>
-            <input type="email" id="email" name="email"><br>
-            <label for="message">Message</label><br>
-            <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
-            <input type="submit" value="Envoyer">
-          </form>
-    </div>
-    <div class="footer">
-    <div class="primary">
-        <div class="logoetpara">
-            <img src="images/ParBa.png" alt=""><br>
+    </nav>
+    <!-- Hero -->
+    <section class="block md:flex md:justify-around md:items-start text-white md:mt-35 md:p-15 sm:mt-5 sm:p-5">
+        <div class="partie1 block w-full h-70 p-4 md:w-75 md:h-60 ">
+            <h1 class="text-4xl"> Bonjour je suis Moussa !</h1>
             <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis porro, facere, sapiente dolor eos blanditiis dignissimos voluptate magnam asperiores aliquid aperiam animi recusandae harum placeat quis molestias a? Pariatur, enim!
+                Je suis un développeur web full stack et j'habite à Dakar.
             </p>
+            <div class="btn flex items-center gap-5 mt-5">
+                <button
+                    class="bg-amber-200 text-black px-4 py-2 hover:bg-amber-600 cursor-pointer rounded-full">CONTACTEZ-MOI
+                </button>
+                <i class="fa fa-linkedin bg-gray-500 text-amber-200 rounded-4xl p-2 cursor-pointer"></i>
+                <i class="fa fa-github bg-gray-500 text-amber-200 rounded-4xl p-2 cursor-pointer"></i>
+            </div>
         </div>
-        <div class="propos">
-            <h3><a href="#">À propos</a></h3><br>
-            <p>
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse laudantium assumenda, consequuntur consequatur maxime quam delectus aut voluptatem labore minima veritatis natus? Dolores sapiente impedit vero, eaque esse totam possimus?
-            </p>
+        <div class="overflow-hidden -mt-20 rounded-2xl">
+            <img src="https://static.vecteezy.com/ti/photos-gratuite/t2/41158401-ai-genere-positif-souriant-afro-americain-homme-montrant-comme-ou-approbation-geste-content-noir-gars-dans-decontractee-vetements-les-pouces-en-haut-geste-photo.jpg"
+                alt="" class="w-90 h-112.5 object-cover">
         </div>
-        <div class="reseau">
-            <!-- <i class="fab fa-facebook"><a href=""></a></i> -->
-             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiXN9xSEe8unzPBEQOeAKXd9Q55efGHGB9BA&s" alt="">
-             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREiNFtPCpgaLwF4O14R82_uxfuQ-TEAxDAqQ&s" alt="">
-             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG59cjacYex6D8EMImov2O8psnecmdXuXoNA&s" alt="">
-             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmgV3rvl_AvDgG9o7p9b_b1sb1ZVChFrvuNQ&s" alt="">
+    </section>
+    <hr class="border border-gray-500">
+    <!-- Projets mis en avant -->
+    <section class="mt-20 text-white w-full">
+        <h1 class="mt-5 ml-15">PROJETS MIS EN AVANT</h1>
+        <p class="md:max-w-75 md:ml-15 md:mt-2 sm:w-full">
+            Voici une selection de mes projets qui vont illustrer mon expertise et mes réalisations.
+            Je suis passionné par le développement web.
+        </p>
+            <div class="block projet1 mt-10 md:flex md:justify-around p-20">
+                <div class="md:w-120 md:h-120 overflow-hidden md:flex items-center p-5 bg-gray-900 sm:w-full">
+                    <img src="https://i.pinimg.com/736x/36/75/a9/3675a93f29c2e7bcbc3839be212a8ec6.jpg"
+                        class="md:w-7xl md:h-90 rounded-lg sm:h-20" alt="">
+                </div>
+                <div class="droit w-1/2 h-90 p-5">
+                    <h1 class="text-2xl">Page de destination promotionnelle pour notre émission préférée.</h1>
+                    <p class="mt-5">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam voluptatibus excepturi voluptas
+                        illum
+                        corporis nam eaque modi sunt veritatis laborum, saepe quibusdam? Architecto dignissimos tenetur
+                        eligendi numquam, alias sequi illo!
+                    </p>
+                    <h2 class="mt-5">INFORMATION SUR LE PROJET</h2>
+                    <hr>
+                    <div class="annee flex justify-between mt-4">
+                        <h4>Année de réalisation</h4>
+                        <p>2023</p>
+                    </div>
+                    <hr>
+                    <div class="role flex justify-between mt-4">
+                        <h5>Rôle</h5>
+                        <p>Développeur web full stack</p>
+                    </div>
+                    <div class="link text-amber-300 mt-5 gap-4 flex decoration-amber-200 underline">
+                        <a href="">Demo <i class="fa fa-external-link"></i></a>
+                        <a href="">GitHub <i class="fa fa-github"></i></a>
+                    </div>
+                </div>
+            </div><br>
+            <!-- Deuxième projet -->
+            <div class="block projet1 mt-10 md:flex md:justify-around p-20">
+                <div class="w-120 h-120 overflow-hidden flex items-center p-5 bg-gray-900">
+                    <img src="https://i.pinimg.com/736x/c1/48/ae/c148aed62270e746051a9a71fb2bb1ce.jpg"
+                        class="w-7xl h-90 rounded-lg" alt="">
+                </div>
+                <div class="droit w-1/2 h-90 p-5">
+                    <h1 class="text-2xl">Site de blog pour l'actualité mondiale.</h1>
+                    <p class="mt-5">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam voluptatibus excepturi voluptas
+                        illum
+                        corporis nam eaque modi sunt veritatis laborum, saepe quibusdam? Architecto dignissimos tenetur
+                        eligendi numquam, alias sequi illo!
+                    </p>
+                    <h2 class="mt-5">INFORMATION SUR LE PROJET</h2>
+                    <hr>
+                    <div class="flex justify-between mt-4">
+                        <h4>Client</h4>
+                        <p>Sen Web</p>
+                    </div>
+                    <hr>
+                    <div class="annee flex justify-between mt-4">
+                        <h4>Année de réalisation</h4>
+                        <p>2022</p>
+                    </div>
+                    <hr>
+                    <div class="role flex justify-between mt-4">
+                        <h5>Rôle</h5>
+                        <p>Développeur web full stack</p>
+                    </div>
+                    <div class="link text-amber-300 mt-5 gap-4 flex decoration-amber-200 underline">
+                        <a href="">Demo <i class="fa fa-external-link"></i></a>
+                    </div>
+                </div>
+            </div><br>
+            <!-- Troisième projet -->
+            <div class="block projet1 mt-10 md:flex md:justify-around p-20">
+                <div class="w-120 h-120 overflow-hidden flex items-center p-5 bg-gray-900">
+                    <img src="https://i.pinimg.com/736x/8b/f1/18/8bf1185b3de7bebbe61fe3313a9b3bcd.jpg"
+                        class="w-7xl h-90 rounded-lg" alt="">
+                </div>
+                <div class="droit w-1/2 h-90 p-5">
+                    <h1 class="text-2xl">Site web pour une entreprise de services.</h1>
+                    <p class="mt-5">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam voluptatibus excepturi voluptas
+                        illum
+                        corporis nam eaque modi sunt veritatis laborum, saepe quibusdam? Architecto dignissimos tenetur
+                        eligendi numquam, alias sequi illo!
+                    </p>
+                    <h2 class="mt-5">INFORMATION SUR LE PROJET</h2>
+                    <hr>
+                    <div class="annee flex justify-between mt-4">
+                        <h4>Année de réalisation</h4>
+                        <p>2021</p>
+                    </div>
+                    <hr>
+                    <div class="role flex justify-between mt-4">
+                        <h5>Rôle</h5>
+                        <p>Développeur web full stack</p>
+                    </div>
+                    <div class="link text-amber-300 mt-5 gap-4 flex decoration-amber-200 underline">
+                        <a href="">Demo <i class="fa fa-external-link"></i></a>
+                        <a href="">GitHub <i class="fa fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <hr class="border border-gray-500">
+    <!-- Partie (à propos de moi) -->
+    <section class="mt-5 text-white w-full p-20">
+        <div class="block propos md:flex md:justify-evenly md:p-15 sm:p-5">
+            <h1 class="text-4xl">À PROPOS DE MOI</h1>
+            <div class="para">
+                <h2 class="text-2xl">Je suis un jeune développeur web full stack.</h2>
+                <p class="md:max-w-90 md:mt-5 sm:max-w-full sm:mt-2">
+                    Je suis un développeur web full stack passionné par la création de solutions innovantes et
+                    efficaces.
+                    Avec une solide expérience dans le développement de sites web et d'applications, je suis constamment
+                    à
+                    la recherche de nouveaux défis pour améliorer mes compétences et contribuer à des projets
+                    passionnants.
+                </p>
+            </div>
         </div>
-    </div>
-    <div class="finale">
-        <div class="reseau1">
-            <!-- <i class="fab fa-facebook"><a href=""></a></i> -->
-             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiXN9xSEe8unzPBEQOeAKXd9Q55efGHGB9BA&s" alt="">
-             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREiNFtPCpgaLwF4O14R82_uxfuQ-TEAxDAqQ&s" alt="">
-             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG59cjacYex6D8EMImov2O8psnecmdXuXoNA&s" alt="">
-             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmgV3rvl_AvDgG9o7p9b_b1sb1ZVChFrvuNQ&s" alt="">
+        <a href="projets.php" class="mt-10 flex justify-center text-amber-300 underline">EN SAVOIR PLUS SUR MOI</a>
+    </section>
+    <hr class="border border-gray-500">
+    <!-- Partie contact -->
+    <section class="text-white">
+        <div class="block glob md:flex md:w-full md:justify-around">
+            <div class="contact p-10">
+                <h1 class="text-3xl">ENTRONS EN CONTACT</h1>
+                <p class="mt-5">
+                    Dites bonjour à <a href="">moussandoye@gmail.com</a><br>
+                    Pour en savoir plus voici mon <a href="portfolio.html">C.V.</a>
+                </p>
+                <div class="icons text-amber-300 flex gap-4 mt-5">
+                    <i class="fa fa-linkedin"></i>
+                    <i class="fa fa-github"></i>
+                    <i class="fa fa-twitter"></i>
+                    <i class="fa fa-instagram"></i>
+                </div>
+            </div>
+            <form action="traitement.php" method="post" class="flex-1 max-w-lg">
+                <div class="p-10">
+                    <label for="prenom">Nom complet</label>
+                    <input type="text" id="prenom" name="prenom" placeholder="Moussa Ndoye" required
+                        class="block w-full p-2 mt-2 bg-gray-800 text-white rounded-md">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email"
+                        class="block w-full p-2 mt-2 bg-gray-800 text-white rounded-md">
+                    <label for="sujet">Sujet</label>
+                    <input type="text" id="sujet" name="sujet"
+                        class="block w-full p-2 mt-2 bg-gray-800 text-white rounded-md">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message"
+                        class="block w-full p-2 mt-2 bg-gray-800 text-white rounded-md" rows="5"></textarea>
+                    <button type="submit"
+                        class="px-6 py-2 bg-yellow-100 rounded-full text-black mt-4 cursor-pointer">ENVOYER</button>
+                </div>
+            </form>
         </div>
-    </div><br><br>
-        <div class="copyright" style="text-align: center;">
-            <p style="color: white;">&copy; COPYRIGHT 2021 | DEFAR Sci. Tous droits réservés.</p>
+        <div class="droits réservés -mt-15 ml-35">
+            <p>&copy; 2023 - Moussa Ndoye</p>
         </div>
-</div>
+    </section>
 </body>
 </html>
